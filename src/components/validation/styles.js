@@ -95,7 +95,6 @@ const StyledDropdownList = styled.ul`
   left: 0;
   right: 0;
   bottom: 100%;
-  padding: 0 15px;
   flex-direction: column;
   border: 1px solid ${(props) => props.theme.colors.black};
   background-color: ${(props) => props.theme.colors.formDark};
@@ -114,7 +113,7 @@ const StyledDropdownList = styled.ul`
   }
   > li {
     cursor: pointer;
-    padding: 10px 0;
+    padding: 10px 15px;
     &:hover {
       background-color: ${(props) => props.theme.colors.dark};
     }
@@ -128,7 +127,7 @@ const StyledDropdownInput = styled(StyledInput).attrs({
   outline: none;
   border: 1px solid ${(props) => props.theme.colors.black} !important;
   width: 100%;
-  &:focus {
+  &:focus-within {
     ~ .arrow-icon {
       transform: rotate(180deg);
     }

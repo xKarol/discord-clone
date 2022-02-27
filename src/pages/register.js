@@ -8,8 +8,12 @@ import {
   StyledSubmit,
   StyledInput,
 } from "../components/validation/styles";
+import { months } from "../utils/month-names";
 
 function Register() {
+  const currentYear = new Date().getFullYear();
+
+  console.log(currentYear);
   return (
     <ValidationBackground>
       <StyledForm>
@@ -25,40 +29,20 @@ function Register() {
         </InputField>
         <InputField label="Date of birth">
           <Dropdown>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li>10</li>
+            {[...new Array(31)].map((_, index) => (
+              <li key={index}>{index + 1}</li>
+            ))}
           </Dropdown>
           <Dropdown>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li>10</li>
+            {months.map((name) => (
+              <li key={name}>{name}</li>
+            ))}
           </Dropdown>
           <Dropdown>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li>10</li>
+            {[...new Array(160)].map((_, index) => {
+              if (currentYear - index < 1870) return null;
+              return <li key={index}>{currentYear - index}</li>;
+            })}
           </Dropdown>
         </InputField>
         <StyledSubmit type="submit">Continue</StyledSubmit>
