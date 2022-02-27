@@ -9,23 +9,41 @@ import {
   StyledInput,
 } from "../components/validation/styles";
 import { months } from "../utils/month-names";
+import { useForm } from "react-hook-form";
+// import { isValidEmail, trimSpace } from "../utils/regex";
 
 function Register() {
   const currentYear = new Date().getFullYear();
+  const { register, handleSubmit } = useForm();
 
-  console.log(currentYear);
+  const onSubmit = ({ email, username, password }) => {
+    console.log(email, username, password);
+  };
+
   return (
     <ValidationBackground>
-      <StyledForm>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledFormHeading>Create an account</StyledFormHeading>
         <InputField label="Email">
-          <StyledInput type="email" />
+          <StyledInput
+            type="email"
+            {...register("email", { required: true, minLength: 5 })}
+          />
         </InputField>
         <InputField label="Username">
-          <StyledInput type="text" />
+          <StyledInput
+            type="text"
+            {...register("username", {
+              required: true,
+              minLength: 2,
+            })}
+          />
         </InputField>
         <InputField label="Password">
-          <StyledInput type="password" />
+          <StyledInput
+            type="password"
+            {...register("password", { required: true, minLength: 5 })}
+          />
         </InputField>
         <InputField label="Date of birth">
           <Dropdown>
