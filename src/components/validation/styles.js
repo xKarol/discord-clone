@@ -32,7 +32,6 @@ const StyledField = styled.div`
 
 const StyledFieldInputs = styled.div`
   display: flex;
-  flex-wrap: wrap;
   > :nth-child(2) {
     margin-left: 15px;
     margin-right: 15px;
@@ -66,6 +65,8 @@ const StyledSubmit = styled.button`
   color: ${(props) => props.theme.colors.white};
   border-radius: 3px;
   cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
   transition: background-color 100ms ease-in-out;
   &:hover {
     background-color: ${(props) => props.theme.colors.darkBlue};
@@ -81,7 +82,6 @@ const StyledLabel = styled.label`
 `;
 
 const StyledLink = styled.small`
-  margin-top: 10px;
   font-size: 14px;
   color: ${(props) => props.theme.colors.darkGray};
   a {

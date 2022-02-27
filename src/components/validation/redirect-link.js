@@ -5,6 +5,7 @@ function RedirectLink({ linkText, href, extraText }) {
   return (
     <StyledLink>
       {extraText}
+      {extraText && " "}
       <Link to={href}>{linkText}</Link>
     </StyledLink>
   );
