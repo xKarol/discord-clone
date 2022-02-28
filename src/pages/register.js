@@ -13,15 +13,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/user/userActions";
 // import { isValidEmail, trimSpace } from "../utils/regex";
-import { useNavigate } from "react-router-dom";
 
 function Register() {
   const currentYear = new Date().getFullYear();
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const onSubmit = ({ email, username, password }) => {
-    dispatch(registerUser(navigate, username, email, password));
+    dispatch(registerUser(username, email, password));
   };
 
   return (

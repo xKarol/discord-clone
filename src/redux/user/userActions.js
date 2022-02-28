@@ -3,12 +3,16 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILURE,
 } from "./userTypes";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 
-export const registerUser = (navigate, username, email, password) => {
+export const registerUser = (username, email, password) => {
   return async (dispatch) => {
-    dispatch(fetchUsersRequest());
+    dispatch(fetchUserRequest());
     const auth = getAuth();
     const db = getFirestore();
     try {
@@ -21,28 +25,42 @@ export const registerUser = (navigate, username, email, password) => {
       await setDoc(doc(db, "users", user.uid), {
         username,
       });
-      dispatch(fetchUsersSuccess());
-      navigate("/", { replace: true });
+      dispatch(fetchUserSuccess());
+      // navigate("/", { replace: true });
     } catch (error) {
-      dispatch(fetchUsersFailure(error.code));
+      dispatch(fetchUserFailure(error.code));
     }
   };
 };
 
-export const fetchUsersRequest = () => {
+export const loginUser = (email, password) => {
+  return async (dispatch) => {
+    dispatch(fetchUserRequest());
+    const auth = getAuth();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      dispatch(fetchUserSuccess());
+      // navigate("/", { replace: true });
+    } catch (error) {
+      dispatch(fetchUserFailure(error.code));
+    }
+  };
+};
+
+export const fetchUserRequest = () => {
   return {
     type: REGISTER_USER_REQUEST,
   };
 };
 
-export const fetchUsersSuccess = (users) => {
+export const fetchUserSuccess = (users) => {
   return {
     type: REGISTER_USER_SUCCESS,
     payload: users,
   };
 };
 
-export const fetchUsersFailure = (error) => {
+export const fetchUserFailure = (error) => {
   return {
     type: REGISTER_USER_FAILURE,
     payload: error,
