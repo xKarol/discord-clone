@@ -26,7 +26,6 @@ export const registerUser = (username, email, password) => {
         username,
       });
       dispatch(fetchUserSuccess());
-      // navigate("/", { replace: true });
     } catch (error) {
       dispatch(fetchUserFailure(error.code));
     }
@@ -40,7 +39,6 @@ export const loginUser = (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       dispatch(fetchUserSuccess());
-      // navigate("/", { replace: true });
     } catch (error) {
       dispatch(fetchUserFailure(error.code));
     }
@@ -53,10 +51,10 @@ export const fetchUserRequest = () => {
   };
 };
 
-export const fetchUserSuccess = (users) => {
+export const fetchUserSuccess = (user) => {
   return {
     type: REGISTER_USER_SUCCESS,
-    payload: users,
+    payload: user,
   };
 };
 
