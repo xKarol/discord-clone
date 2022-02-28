@@ -54,7 +54,7 @@ const StyledOptions = styled.ul`
 const StyledOption = styled.li`
   display: flex;
   align-items: center;
-  border: 1px solid ${(props) => props.theme.colors.gray};
+  border: 1px solid #e6e6e6;
   border-radius: 5px;
   padding: 15px;
   font-weight: 800;
@@ -73,7 +73,7 @@ const StyledOptionImage = styled.img`
   pointer-events: none;
 `;
 
-const StyledLabel = styled.label`
+const StyledLabel = styled.small`
   text-transform: uppercase;
   color: ${(props) => props.theme.colors.darkGray};
   font-weight: 800;

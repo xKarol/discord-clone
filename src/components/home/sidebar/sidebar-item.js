@@ -3,15 +3,21 @@ import { StyledSidebarItem, StyledSidebarItemBox } from "./styles";
 import { styled } from "@mui/material/styles";
 
 const DarkTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
+  <Tooltip {...props} classes={{ popper: className }} arrow />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.black,
-    color: "#FFFFFF",
+    color: "#c8c8c8",
     fontSize: 15,
     fontFamily: "'Nunito Sans', sans-serif",
     fontWeight: 700,
-    padding: "5px 10px",
+    padding: "8px 10px",
+  },
+
+  [`& .${tooltipClasses.arrow}::before`]: {
+    backgroundColor: theme.palette.common.black,
+    width: 20,
+    height: 20,
   },
 }));
 
