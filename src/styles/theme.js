@@ -12,6 +12,7 @@ export default function Theme({ children }) {
       lightBlue: "#01ADF1",
       blue: "#5865F2",
       darkBlue: "#4752C4",
+      lightGray: "#F6F6F7",
       gray: "#b9bbbe",
       darkGray: "#5D6067",
     },

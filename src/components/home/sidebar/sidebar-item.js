@@ -15,11 +15,18 @@ const DarkTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-function SidebarItem({ children, name, color }) {
+function SidebarItem(props) {
   return (
-    <DarkTooltip title={name} disableInteractive placement="right">
+    <DarkTooltip
+      {...props}
+      title={props.name}
+      disableInteractive
+      placement="right"
+    >
       <StyledSidebarItemBox>
-        <StyledSidebarItem color={color}>{children}</StyledSidebarItem>
+        <StyledSidebarItem color={props.color}>
+          {props.children}
+        </StyledSidebarItem>
       </StyledSidebarItemBox>
     </DarkTooltip>
   );
