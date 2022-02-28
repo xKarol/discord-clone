@@ -1,4 +1,3 @@
-import logo from "../assets/logo.svg";
 import styled from "styled-components";
 
 const StyledLogo = styled.img`
@@ -15,7 +14,7 @@ const StyledContainer = styled.main`
 function PendingScreen() {
   return (
     <StyledContainer>
-      <StyledLogo src={logo} alt="discord logo" />
+      <StyledLogo src={"/images/logo.svg"} alt="discord logo" />
     </StyledContainer>
   );
 }

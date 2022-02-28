@@ -1,5 +1,12 @@
-function Home() {
-  return <div>Home</div>;
+import Sidebar from "../components/home/sidebar";
+import { StyledBackground } from "../components/home/styles";
+
+function HomePage() {
+  return (
+    <StyledBackground>
+      <Sidebar />
+    </StyledBackground>
+  );
 }
 
-export default Home;
+export default HomePage;
