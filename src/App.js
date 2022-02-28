@@ -3,14 +3,15 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import ProtectedRoutes from "./components/protected-routes";
+import * as route from "./constants/routes";
 
 function App() {
   return (
     <ProtectedRoutes>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path={route.HOME} element={<Home />} />
+        <Route path={route.REGISTER} element={<Register />} />
+        <Route path={route.LOGIN} element={<Login />} />
       </Routes>
     </ProtectedRoutes>
   );

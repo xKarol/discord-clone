@@ -3,6 +3,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import PendingScreen from "./pending-screen";
+import * as route from "../constants/routes";
 
 function ProtectedRoutes({ children }) {
   const [pending, setPending] = useState(true);
@@ -14,10 +15,14 @@ function ProtectedRoutes({ children }) {
 
   useEffect(() => {
     if (pending) return;
-    if ((location === "/login" || location === "/register") && loggedIn) {
-      navigate("/");
+    if (
+      (location.pathname === route.LOGIN ||
+        location.pathname === route.REGISTER) &&
+      loggedIn
+    ) {
+      navigate(route.HOME);
     }
-  }, [location, loggedIn, navigate, pending]);
+  }, [location.pathname, loggedIn, navigate, pending]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -33,7 +38,7 @@ function ProtectedRoutes({ children }) {
         console.log("logout");
         setLoggedIn(false);
         setPending(false);
-        navigate("/login");
+        navigate(route.LOGIN);
       }
     });
     return () => unsubscribe();
