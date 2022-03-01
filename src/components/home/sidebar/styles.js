@@ -1,66 +1,81 @@
 import styled from "styled-components";
 import { HideScrollbar } from "../styles";
 
-const StyledSidebar = styled.ul`
+const StyledSidebarBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70px;
+  width: 240px;
   height: 100vh;
   align-items: center;
-  background-color: ${(props) => props.theme.colors.veryDark};
+  background-color: ${(props) => props.theme.colors.formDark};
   padding: 15px 0;
+  padding-bottom: 0;
   overflow-y: scroll;
   max-height: 100vh;
   ${HideScrollbar};
 `;
 
-const StyledSidebarItem = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #f0f0f0;
-  background-color: ${(props) => props.color ?? props.theme.colors.lightDark};
-  overflow: hidden;
-  transition: border-radius 100ms ease-in-out;
+const StyledSidebarContainer = styled.div`
+  padding: 0 10px;
+`;
+
+const StyledSearchBox = styled.button.attrs({ type: "button" })`
+  background-color: ${(props) => props.theme.colors.dark};
+  border: none;
+  border-radius: 3px;
   cursor: pointer;
+  padding: 5px 15px;
+  color: ${(props) => props.theme.colors.gray};
+  font-size: 13px;
 `;
-
-const StyledSidebarItemBox = styled.li`
+const StyledFriendsList = styled.ul``;
+const StyledFriend = styled.li``;
+const StyledCurrentUserData = styled.div`
   display: flex;
-  margin-bottom: 15px;
-  position: relative;
+  padding: 10px;
+  margin-top: auto;
   width: 100%;
-  &:last-child {
-    margin-bottom: 0;
+  background-color: ${(props) => props.theme.colors.dark};
+`;
+
+const StyledUsername = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  font-size: 13px;
+  > span {
+    font-weight: 800;
   }
-  &:hover {
-    ${StyledSidebarItem} {
-      border-radius: 15px;
-    }
-    &::before {
-      visiblity: visible;
-      height: 20px;
-      left: -6px;
-    }
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    left: -10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 0;
-    border-radius: 3px;
-    background-color: ${(props) => props.theme.colors.white};
-    transition: all 100ms ease-in-out;
-    visiblity: hidden;
+  > small {
+    color: ${(props) => props.theme.colors.gray};
   }
 `;
 
-export { StyledSidebar, StyledSidebarItemBox, StyledSidebarItem };
+const StyledUserIcons = styled.div`
+  display: flex;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  > * {
+    color: ${(props) => props.theme.colors.gray};
+    transition: background-color 100ms ease-in-out;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 30px !important;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(185, 187, 190, 0.2);
+    }
+  }
+`;
+
+export {
+  StyledSidebarContainer,
+  StyledSidebarBox,
+  StyledSearchBox,
+  StyledFriendsList,
+  StyledFriend,
+  StyledCurrentUserData,
+  StyledUsername,
+  StyledUserIcons,
+};
