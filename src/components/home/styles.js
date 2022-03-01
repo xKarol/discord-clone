@@ -7,4 +7,10 @@ const StyledBackground = styled.main`
   background-color: ${(props) => props.theme.colors.dark};
 `;
 
-export { StyledBackground };
+const StyledBody = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+`;
+
+export { StyledBackground, StyledBody };
