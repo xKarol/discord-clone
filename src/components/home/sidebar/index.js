@@ -10,6 +10,7 @@ import ListItem from "./list-item";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import BoltIcon from "@mui/icons-material/Bolt";
 import AddIcon from "@mui/icons-material/Add";
+import Avatar from "../../avatar";
 
 function Sidebar() {
   return (
@@ -18,19 +19,15 @@ function Sidebar() {
         <StyledSearchBox>Find or start a conversation</StyledSearchBox>
       </StyledSidebarContainer>
       <StyledList>
-        <ListItem text="Friends">
-          <EmojiPeopleIcon />
-        </ListItem>
-        <ListItem text="Nitro">
-          <BoltIcon />
-        </ListItem>
+        <ListItem text="Friends" icon={<EmojiPeopleIcon />} />
+        <ListItem text="Nitro" icon={<BoltIcon />} />
       </StyledList>
       <StyledDirectMessages>
         Direct Messages
         <AddIcon fontSize={"small"} />
       </StyledDirectMessages>
       <StyledList>
-        <ListItem text="Test">{/* <Avatar /> */}</ListItem>
+        <ListItem text="Test" icon={<Avatar status="offline" />} />
       </StyledList>
       <UserProfile />
     </StyledSidebarBox>

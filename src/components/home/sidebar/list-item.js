@@ -1,9 +1,9 @@
 import { StyledListItem } from "./styles";
 
-function ListItem({ text, children }) {
+function ListItem({ text, icon }) {
   return (
     <StyledListItem>
-      {children}
+      {icon}
       <span>{text}</span>
     </StyledListItem>
   );

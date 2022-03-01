@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import Avatar from "../../../avatar";
 import { StyledCurrentUserData } from "./styles";
 import Username from "./username";
 import ProfileIcons from "./profile-icons";
@@ -6,7 +6,7 @@ import ProfileIcons from "./profile-icons";
 function CurrentUserData() {
   return (
     <StyledCurrentUserData>
-      <Avatar sx={{ width: "33px", height: "33px" }} />
+      <Avatar status="online" />
       <Username />
       <ProfileIcons />
     </StyledCurrentUserData>

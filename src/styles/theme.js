@@ -15,6 +15,7 @@ export default function Theme({ children }) {
       lightGray: "#F6F6F7",
       gray: "#b9bbbe",
       darkGray: "#5D6067",
+      green: "#3BA55D",
     },
     fonts: {
       main: "'Nunito Sans', sans-serif",
