@@ -12,7 +12,6 @@ export const getChannels = (userId) => {
       const db = getFirestore();
       // const q = query(collection(db, "channels"), orderBy("timestamp", "desc"));
       const channelsDocs = await getDocs(collection(db, "channels"));
-      console.log(channelsDocs);
       const channelsData = channelsDocs.docs.map((docData) => ({
         id: docData.id,
         ...docData.data(),

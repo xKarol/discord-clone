@@ -1,4 +1,4 @@
-import CurrentUserData from "./current-user-data";
+import UserProfile from "./user-profile";
 import {
   StyledSidebarBox,
   StyledSidebarContainer,
@@ -16,7 +16,7 @@ function Sidebar() {
           <StyledFriend />
         </StyledFriendsList>
       </StyledSidebarContainer>
-      <CurrentUserData />
+      <UserProfile />
     </StyledSidebarBox>
   );
 }

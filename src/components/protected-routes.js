@@ -4,13 +4,16 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import PendingScreen from "./pending-screen";
 import * as route from "../constants/routes";
+import { useDispatch } from "react-redux";
+import { fetchUserSuccess } from "../redux/user/userActions";
 
 function ProtectedRoutes({ children }) {
   const [pending, setPending] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
   const auth = getAuth();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  let location = useLocation();
+  const location = useLocation();
   const db = getFirestore();
 
   useLayoutEffect(() => {
@@ -31,9 +34,8 @@ function ProtectedRoutes({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        console.log("login", uid, user);
         getDoc(doc(db, "users", uid)).then((userData) => {
-          console.log(userData.data());
+          dispatch(fetchUserSuccess({ ...userData.data(), uid: uid }));
           setLoggedIn(true);
           setPending(false);
         });
@@ -44,7 +46,7 @@ function ProtectedRoutes({ children }) {
       }
     });
     return () => unsubscribe();
-  }, [auth, navigate, db]);
+  }, [auth, navigate, db, dispatch]);
 
   if (pending) return <PendingScreen />;
   return children;

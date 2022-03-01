@@ -8,6 +8,7 @@ import {
 const initialState = {
   loading: false,
   loggedIn: false,
+  user: {},
   error: "",
 };
 
@@ -27,6 +28,7 @@ const userReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: "",
+        user: action.payload,
       };
     case REGISTER_USER_FAILURE:
       return {
