@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Dropdown from "../components/validation/dropdown";
 import InputField from "../components/validation/input-field";
 import RedirectLink from "../components/validation/redirect-link";
@@ -13,13 +14,17 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/user/userActions";
 // import { isValidEmail, trimSpace } from "../utils/regex";
+import { CircularProgress } from "@mui/material";
 
 function Register() {
+  const [loading, setLoading] = useState(false);
   const currentYear = new Date().getFullYear();
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const onSubmit = ({ email, username, password }) => {
+    setLoading(true);
     dispatch(registerUser(username, email, password));
+    setLoading(false);
   };
 
   return (
@@ -65,7 +70,13 @@ function Register() {
             })}
           </Dropdown>
         </InputField>
-        <StyledSubmit type="submit">Continue</StyledSubmit>
+        <StyledSubmit type="submit">
+          {loading ? (
+            <CircularProgress size={20} thickness={6} sx={{ color: "#FFF" }} />
+          ) : (
+            "Continue"
+          )}
+        </StyledSubmit>
         <RedirectLink linkText="Already have an account?" href={"/login"} />
       </StyledForm>
     </ValidationBackground>

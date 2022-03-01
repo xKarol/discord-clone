@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import InputField from "../components/validation/input-field";
@@ -10,13 +11,17 @@ import {
   StyledInput,
 } from "../components/validation/styles";
 import { loginUser } from "../redux/user/userActions";
+import { CircularProgress } from "@mui/material";
 
 function Login() {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  
+
   const onSubmit = ({ email, password }) => {
+    setLoading(true);
     dispatch(loginUser(email, password));
+    setLoading(false);
   };
 
   return (
@@ -39,7 +44,13 @@ function Login() {
           linkText="Forgot your password?"
           href={"/forgot-password"}
         />
-        <StyledSubmit type="submit">Login</StyledSubmit>
+        <StyledSubmit type="submit">
+          {loading ? (
+            <CircularProgress size={20} thickness={6} sx={{ color: "#FFF" }} />
+          ) : (
+            "Login"
+          )}
+        </StyledSubmit>
         <RedirectLink
           extraText="Need an account?"
           linkText="Register"

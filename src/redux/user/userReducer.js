@@ -3,6 +3,7 @@ import {
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILURE,
+  LOGOUT_USER,
 } from "./userTypes";
 
 const initialState = {
@@ -36,6 +37,8 @@ const userReducer = (state = initialState, action) => {
         loggedIn: false,
         error: action.payload,
       };
+    case LOGOUT_USER:
+      return initialState;
     default:
       return state;
   }

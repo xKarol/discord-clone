@@ -2,9 +2,11 @@ import {
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILURE,
+  LOGOUT_USER,
 } from "./userTypes";
 import {
   getAuth,
+  signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
@@ -42,6 +44,20 @@ export const loginUser = (email, password) => {
     } catch (error) {
       dispatch(fetchUserFailure(error.code));
     }
+  };
+};
+
+export const logoutUserRequest = () => {
+  return async (dispatch) => {
+    const auth = getAuth();
+    await signOut(auth);
+    dispatch(logoutUser());
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT_USER,
   };
 };
 

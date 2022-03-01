@@ -1,10 +1,11 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: pointer;
   &::before {
     content: "";
     position: absolute;
@@ -23,7 +24,6 @@ const StyledAvatar = styled.div`
   }
 `;
 
-
 const HideScrollbar = () => css`
   ::-webkit-scrollbar {
     display: none;
@@ -31,6 +31,5 @@ const HideScrollbar = () => css`
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 `;
-
 
 export { StyledAvatar, HideScrollbar };

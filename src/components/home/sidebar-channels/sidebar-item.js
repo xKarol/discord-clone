@@ -5,9 +5,9 @@ import Tooltip from "../../tooltip";
 function SidebarItem(props) {
   return (
     <Tooltip title={props.name} placement="right">
-      <StyledSidebarItemBox>
+      <StyledSidebarItemBox {...props}>
         <StyledSidebarItem color={props.color}>
-          {props.children ?? getAcronym(props.name)}
+          {props.icon ?? getAcronym(props.name)}
         </StyledSidebarItem>
       </StyledSidebarItemBox>
     </Tooltip>

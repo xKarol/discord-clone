@@ -1,10 +1,10 @@
 import { StyledAvatar } from "../styles";
 import { Avatar } from "@mui/material";
 
-function CustomAvatar({ src, status }) {
+function CustomAvatar(props) {
   return (
-    <StyledAvatar status={status}>
-      <Avatar src={src} sx={{ width: "33px", height: "33px" }} />
+    <StyledAvatar {...props} status={props.status}>
+      <Avatar src={props.src} sx={{ width: "33px", height: "33px" }} />
     </StyledAvatar>
   );
 }

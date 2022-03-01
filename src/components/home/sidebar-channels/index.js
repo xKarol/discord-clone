@@ -12,22 +12,29 @@ function SidebarChannels() {
 
   return (
     <StyledSidebar>
-      <SidebarItem name="Home" color={"#5865F2"}>
-        <img
-          src={"/images/logo-white.svg"}
-          alt="discord logo"
-          style={{ width: "100%", transform: "scale(0.6)" }}
-        />
-      </SidebarItem>
+      <SidebarItem
+        name="Home"
+        color={"#5865F2"}
+        icon={
+          <img
+            src={"/images/logo-white.svg"}
+            alt="discord logo"
+            style={{ width: "100%", transform: "scale(0.6)" }}
+          />
+        }
+      />
       {!!channels.length &&
         channels.map(({ id, name }) => <SidebarItem key={id} name={name} />)}
 
-      <SidebarItem name="Add a Server" onClick={handleAddServer}>
-        <AddIcon sx={{ color: "#3BA55D" }} />
-      </SidebarItem>
-      <SidebarItem name="Explore Public Servers">
-        <ExploreIcon sx={{ color: "#3BA55D" }} />
-      </SidebarItem>
+      <SidebarItem
+        name="Add a Server"
+        icon={<AddIcon sx={{ color: "#3BA55D" }} />}
+        onClick={handleAddServer}
+      />
+      <SidebarItem
+        name="Explore Public Servers"
+        icon={<ExploreIcon sx={{ color: "#3BA55D" }} />}
+      />
     </StyledSidebar>
   );
 }

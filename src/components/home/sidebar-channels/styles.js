@@ -4,7 +4,7 @@ import { HideScrollbar } from "../../../styles";
 const StyledSidebar = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 70px;
+  width: 80px;
   height: 100vh;
   align-items: center;
   background-color: ${(props) => props.theme.colors.veryDark};
