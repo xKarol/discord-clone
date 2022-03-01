@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledBackground = styled.main`
   display: flex;
@@ -7,4 +7,12 @@ const StyledBackground = styled.main`
   background-color: ${(props) => props.theme.colors.dark};
 `;
 
-export { StyledBackground };
+const HideScrollbar = () => css`
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+`;
+
+export { StyledBackground, HideScrollbar };

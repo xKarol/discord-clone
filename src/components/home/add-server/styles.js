@@ -62,6 +62,11 @@ const StyledButton = styled.button.attrs({ type: "button" })`
   border: none;
   margin-top: 10px;
   cursor: pointer;
+  height: 35px;
+  max-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background-color 100ms ease-in-out;
   &:hover {
     background-color: ${(props) =>

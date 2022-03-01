@@ -1,3 +1,5 @@
+import { CircularProgress } from "@mui/material";
+import { useState } from "react";
 import InputField from "../../../validation/input-field";
 import { StyledInput } from "../../../validation/styles";
 import {
@@ -8,8 +10,24 @@ import {
   StyledButton,
 } from "../styles";
 import ServerIcon from "./server-icon";
+import { collection, addDoc, getFirestore } from "firebase/firestore";
 
 function Add() {
+  const [pending, setPending] = useState(false);
+  const [serverName, setServerName] = useState("Karol's server");
+
+  const handleCreateServer = async () => {
+    try {
+      setPending(true);
+      const db = getFirestore();
+      await addDoc(collection(db, "channels"), {
+        name: serverName,
+      });
+    } finally {
+      setPending(false);
+    }
+  };
+
   return (
     <>
       <StyledContainer>
@@ -23,12 +41,19 @@ function Add() {
 
         <ServerIcon />
         <InputField label="Server Name">
-          <StyledInput type="text" light defaultValue="Karol's server" />
+          <StyledInput
+            type="text"
+            light
+            value={serverName}
+            onChange={(e) => setServerName(e.target.value)}
+          />
         </InputField>
       </StyledContainer>
       <StyledFooter row>
         <StyledButton transparent>Back</StyledButton>
-        <StyledButton>Create</StyledButton>
+        <StyledButton onClick={handleCreateServer}>
+          {pending ? <CircularProgress size={20} thickness={6} /> : "Create"}
+        </StyledButton>
       </StyledFooter>
     </>
   );
