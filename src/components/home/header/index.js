@@ -1,17 +1,20 @@
+import MainIcons from "./main-icons";
 import {
   StyledHeader,
   StyledSearchBox,
   StyledHeaderLeft,
   StyledHeaderMain,
 } from "./styles";
-function Header() {
+
+function Header({ children }) {
   return (
     <StyledHeader>
       <StyledHeaderLeft>
         <StyledSearchBox>Find or start a conversation</StyledSearchBox>
       </StyledHeaderLeft>
       <StyledHeaderMain>
-          Main
+        {children}
+        <MainIcons />
       </StyledHeaderMain>
     </StyledHeader>
   );

@@ -6,7 +6,7 @@ const StyledHeader = styled.header`
   height: 50px;
   max-height: 50px;
   background: ${(props) => props.theme.colors.formDark};
-  border-bottom: 1px solid #20222550;
+  border-bottom: 1px solid #20222599;
 `;
 
 const StyledSearchBox = styled.button.attrs({ type: "button" })`
@@ -38,4 +38,28 @@ const StyledHeaderMain = styled.div`
   padding: 0 20px;
 `;
 
-export { StyledHeader, StyledSearchBox, StyledHeaderLeft, StyledHeaderMain };
+const StyledHeaderMainIcons = styled.div`
+  margin-left: auto;
+  display: flex;
+  padding-left: 15px;
+  color: ${(props) => props.theme.colors.gray};
+  border-left: 1px solid ${(props) => props.theme.colors.darkGray};
+  > * {
+    cursor: pointer;
+    transition: color 100ms ease-in-out;
+    &:hover {
+      color: #f0f0f0;
+    }
+  }
+  > :last-child {
+    margin-left: 15px;
+  }
+`;
+
+export {
+  StyledHeader,
+  StyledSearchBox,
+  StyledHeaderLeft,
+  StyledHeaderMain,
+  StyledHeaderMainIcons,
+};
