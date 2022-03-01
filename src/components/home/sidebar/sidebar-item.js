@@ -1,6 +1,7 @@
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { StyledSidebarItem, StyledSidebarItemBox } from "./styles";
 import { styled } from "@mui/material/styles";
+import { getAcronym } from "../../../utils/regex";
 
 const DarkTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} arrow />
@@ -31,7 +32,7 @@ function SidebarItem(props) {
     >
       <StyledSidebarItemBox>
         <StyledSidebarItem color={props.color}>
-          {props.children}
+          {props.children ?? getAcronym(props.name)}
         </StyledSidebarItem>
       </StyledSidebarItemBox>
     </DarkTooltip>

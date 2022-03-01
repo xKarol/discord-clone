@@ -18,6 +18,8 @@ const StyledSidebarItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
+  color: #f0f0f0;
   background-color: ${(props) => props.color ?? props.theme.colors.lightDark};
   overflow: hidden;
   transition: border-radius 100ms ease-in-out;
