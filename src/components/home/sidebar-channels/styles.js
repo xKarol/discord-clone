@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HideScrollbar } from "../styles";
+import { HideScrollbar } from "../../../styles";
 
 const StyledSidebar = styled.ul`
   display: flex;
@@ -9,6 +9,7 @@ const StyledSidebar = styled.ul`
   align-items: center;
   background-color: ${(props) => props.theme.colors.veryDark};
   padding: 15px 0;
+  padding-top: 5px;
   overflow-y: scroll;
   max-height: 100vh;
   ${HideScrollbar};

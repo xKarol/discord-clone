@@ -1,8 +1,6 @@
 import UserProfile from "./user-profile";
 import {
   StyledSidebarBox,
-  StyledSidebarContainer,
-  StyledSearchBox,
   StyledList,
   StyledDirectMessages,
 } from "./styles";
@@ -15,9 +13,6 @@ import Avatar from "../../avatar";
 function Sidebar() {
   return (
     <StyledSidebarBox>
-      <StyledSidebarContainer>
-        <StyledSearchBox>Find or start a conversation</StyledSearchBox>
-      </StyledSidebarContainer>
       <StyledList>
         <ListItem text="Friends" icon={<EmojiPeopleIcon />} />
         <ListItem text="Nitro" icon={<BoltIcon />} />

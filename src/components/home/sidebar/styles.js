@@ -1,43 +1,26 @@
 import styled from "styled-components";
-import { HideScrollbar } from "../styles";
+import { HideScrollbar } from "../../../styles";
 
 const StyledSidebarBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: 100vh;
+  height: calc(100% - 50px);
+  max-height: calc(100% - 50px);
   background-color: ${(props) => props.theme.colors.formDark};
-  padding: 15px 0;
-  padding-bottom: 0;
-  max-height: 100vh;
 `;
 
-const StyledSidebarContainer = styled.div`
-  width: 100%;
-  padding: 0 10px;
-`;
-
-const StyledSearchBox = styled.button.attrs({ type: "button" })`
-  width: 100%;
-  background-color: ${(props) => props.theme.colors.dark};
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  padding: 5px 15px;
-  color: ${(props) => props.theme.colors.gray};
-  font-size: 13px;
-`;
 const StyledList = styled.ul`
   width: 100%;
   padding: 0 10px;
-  margin-top: 10px;
-  border-top: 1px solid ${(props) => props.theme.colors.dark};
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   max-height: calc(100vh - 215px);
   ${HideScrollbar};
 `;
+
 const StyledListItem = styled.li`
   display: flex;
   padding: 10px;
@@ -72,11 +55,4 @@ const StyledDirectMessages = styled.h5`
   }
 `;
 
-export {
-  StyledSidebarContainer,
-  StyledSidebarBox,
-  StyledSearchBox,
-  StyledList,
-  StyledListItem,
-  StyledDirectMessages,
-};
+export { StyledSidebarBox, StyledList, StyledListItem, StyledDirectMessages };

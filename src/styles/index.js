@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const StyledAvatar = styled.div`
   display: flex;
@@ -23,4 +23,14 @@ const StyledAvatar = styled.div`
   }
 `;
 
-export { StyledAvatar };
+
+const HideScrollbar = () => css`
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+`;
+
+
+export { StyledAvatar, HideScrollbar };
