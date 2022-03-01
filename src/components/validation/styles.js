@@ -41,11 +41,14 @@ const StyledFieldInputs = styled.div`
 const StyledInput = styled.input`
   min-width: unset;
   flex: 1;
-  background-color: ${(props) => props.theme.colors.dark};
-  border: 1px solid ${(props) => props.theme.colors.black};
+  background-color: ${(props) =>
+    props.light ? "#fefefe" : props.theme.colors.dark};
+  border: 1px solid
+    ${(props) => (props.light ? "#f0f0f0" : props.theme.colors.black)};
   border-radius: 3px;
   padding: 12px;
-  color: ${(props) => props.theme.colors.gray};
+  color: ${(props) => (props.light ? "#000" : props.theme.colors.gray)};
+  font-weight: 500;
   font-size: 14px;
   outline: 1px solid transparent;
   transition: outline-color 200ms ease-in-out;
