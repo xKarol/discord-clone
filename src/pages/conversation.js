@@ -14,6 +14,7 @@ import {
   query,
   where,
   onSnapshot,
+  orderBy,
 } from "firebase/firestore";
 import { getUserById } from "../helpers/get-user";
 
@@ -41,7 +42,8 @@ function ConversationPage() {
     const db = getFirestore();
     const q = query(
       collection(db, "messages"),
-      where("users", "array-contains", recipientId, userId)
+      where("users", "array-contains", recipientId, userId),
+      orderBy("timestamp", "desc")
     );
     const unsub = onSnapshot(q, async (messagesDoc) => {
       // const data = messagesDoc.docs.map((message) => ({

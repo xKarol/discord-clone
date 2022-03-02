@@ -7,15 +7,17 @@ import {
   StyledMessageHeader,
   StyledMessageUsername,
 } from "./styles";
+import { formatMessageDate } from "../../utils/format-date";
 
-function Message({ user: { username, avatar }, date, message }) {
+function Message({ user: { username, avatar }, timestamp, message }) {
+  const date = formatMessageDate(timestamp.toDate());
   return (
     <StyledMessage>
       <Avatar src={avatar} />
       <StyledMessageBox>
         <StyledMessageHeader>
           <StyledMessageUsername>{username}</StyledMessageUsername>
-          <StyledMessageDate>Today at 9:54PM</StyledMessageDate>
+          <StyledMessageDate>{date}</StyledMessageDate>
         </StyledMessageHeader>
         <StyledMessageText>{message}</StyledMessageText>
       </StyledMessageBox>
