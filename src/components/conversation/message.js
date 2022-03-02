@@ -10,7 +10,9 @@ import {
 import { formatMessageDate } from "../../utils/format-date";
 
 function Message({ user: { username, avatar }, timestamp, message }) {
-  const date = formatMessageDate(timestamp.toDate());
+  const date = timestamp
+    ? formatMessageDate(timestamp.toDate())
+    : "in a few seconds";
   return (
     <StyledMessage>
       <Avatar src={avatar} />

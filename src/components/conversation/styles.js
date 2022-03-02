@@ -5,7 +5,7 @@ const StyledMessagesBox = styled.section`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  padding: 0 20px;
+  padding: 20px;
   ::-webkit-scrollbar {
     width: 10px;
   }
