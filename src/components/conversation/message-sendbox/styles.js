@@ -21,7 +21,7 @@ const StyledMessageSendInput = styled.form`
   color: ${(props) => props.theme.colors.gray};
 `;
 
-const StyledInput = styled.textarea.attrs({})`
+const StyledInput = styled.input.attrs({ type: "text" })`
   flex: 1;
   height: 100%;
   background-color: transparent;
