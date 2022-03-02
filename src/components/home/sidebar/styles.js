@@ -28,9 +28,6 @@ const StyledListItem = styled.li`
   transition: background-color 100ms ease-in-out;
   color: ${(props) => props.theme.colors.gray};
   font-weight: 500;
-  &:first-child {
-    margin-top: 10px;
-  }
   > :first-child {
     margin-right: 10px;
   }

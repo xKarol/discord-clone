@@ -14,18 +14,18 @@ const StyledSearchBox = styled.button.attrs({ type: "button" })`
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  padding: 5px 15px;
+  padding: 7px 15px;
   width: calc(100% - 20px);
   color: ${(props) => props.theme.colors.gray};
   font-size: 13px;
 `;
 
-const StyledHeaderLeft = styled.div`
+const StyledHeaderLeft = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 240px;
-  min-width: 240px;
+  max-width: 235px;
+  min-width: 235px;
   height: 100%;
   background: ${(props) => props.theme.colors.lightDark};
 `;

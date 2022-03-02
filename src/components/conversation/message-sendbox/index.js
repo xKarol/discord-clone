@@ -11,7 +11,7 @@ function MessageSendbox() {
     <StyledMessageSendBox>
       <StyledMessageSendInput>
         <UploadIcon />
-        <StyledInput placeholder="Message Karol" />
+        <StyledInput placeholder="Message @Karol" />
         <RightIcons />
       </StyledMessageSendInput>
     </StyledMessageSendBox>

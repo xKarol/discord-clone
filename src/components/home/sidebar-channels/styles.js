@@ -5,6 +5,7 @@ const StyledSidebar = styled.ul`
   display: flex;
   flex-direction: column;
   width: 80px;
+  min-width: 80px;
   height: 100vh;
   align-items: center;
   background-color: ${(props) => props.theme.colors.veryDark};

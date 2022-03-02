@@ -62,7 +62,7 @@ const StyledMessageDate = styled.time`
 
 const StyledMessageText = styled.span`
   font-size: 14px;
-  color: #f0f0f0;
+  color: #d7ddde;
 `;
 
 export {
