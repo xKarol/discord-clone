@@ -25,7 +25,8 @@ export const registerUser = (username, email, password) => {
         password
       );
       const user = userCredential.user;
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "users"), {
+        userId: user.uid,
         username,
         avatar: getRandomAvatar(),
       });

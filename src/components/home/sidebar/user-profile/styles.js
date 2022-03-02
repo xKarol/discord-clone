@@ -35,7 +35,7 @@ const StyledUserIcons = styled.div`
     font-size: 30px !important;
     cursor: pointer;
     &:hover {
-      background-color: rgba(185, 187, 190, 0.2);
+      background-color: ${props => props.theme.colors.hoverColor};
     }
   }
 `;

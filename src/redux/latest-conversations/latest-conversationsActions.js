@@ -3,14 +3,21 @@ import {
   FETCH_LATEST_CONVERSATIONS_SUCCESS,
   FETCH_LATEST_CONVERSATIONS_FAILURE,
 } from "./latest-conversationsTypes";
-import { collection, getFirestore, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getFirestore,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 
 export const getLatestConversations = (userId) => {
   return async (dispatch) => {
     dispatch(fetchLatestConversationsRequest());
     try {
       const db = getFirestore();
-      const conversationsDocs = await getDocs(collection(db, "users"));
+      const q = query(collection(db, "users"), where("userId", "!=", userId));
+      const conversationsDocs = await getDocs(q);
       const conversationsData = conversationsDocs.docs.map((docData) => ({
         userId: docData.id,
         ...docData.data(),

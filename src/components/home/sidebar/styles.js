@@ -22,7 +22,8 @@ const StyledList = styled.ul`
 
 const StyledListItem = styled.li`
   display: flex;
-  padding: 10px;
+  padding: 5px 10px;
+  min-height: 45px;
   align-items: center;
   cursor: pointer;
   transition: background-color 100ms ease-in-out;

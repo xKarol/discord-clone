@@ -16,6 +16,7 @@ export default function Theme({ children }) {
       gray: "#b9bbbe",
       darkGray: "#5D6067",
       green: "#3BA55D",
+      hoverColor: "rgba(185, 187, 190, 0.2)",
     },
     fonts: {
       main: "'Nunito Sans', sans-serif",
