@@ -7,12 +7,14 @@ import { StyledBackground, StyledBody } from "../components/home/styles";
 import { getChannels } from "../redux/channels/channelActions";
 import Header from "../components/home/header";
 import { Outlet } from "react-router-dom";
+import { getLatestConversations } from "../redux/latest-conversations/latest-conversationsActions";
 
 function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getChannels());
+    dispatch(getLatestConversations());
   }, [dispatch]);
 
   return (

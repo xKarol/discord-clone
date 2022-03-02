@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
 import { StyledListItem } from "./styles";
 
-function ListItem({ text, icon }) {
+function ListItem({ name, icon, href = "/" }) {
   return (
-    <StyledListItem>
-      {icon}
-      <span>{text}</span>
-    </StyledListItem>
+    <Link to={href}>
+      <StyledListItem>
+        {icon}
+        <span>{name}</span>
+      </StyledListItem>
+    </Link>
   );
 }
 
