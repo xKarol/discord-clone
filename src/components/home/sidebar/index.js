@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
 import Avatar from "../../avatar";
 import * as route from "../../../constants/routes";
+import isOnline from "../../../utils/is-online";
 
 function Sidebar() {
   const { latestConversations } = useSelector(
@@ -24,11 +25,11 @@ function Sidebar() {
         <AddIcon fontSize={"small"} />
       </StyledDirectMessages>
       <StyledList>
-        {latestConversations.map(({ userId, username, avatar }) => (
+        {latestConversations.map(({ userId, username, avatar, lastOnline }) => (
           <ListItem
             key={userId}
             name={username}
-            icon={<Avatar src={avatar} status="offline" />}
+            icon={<Avatar src={avatar} status={isOnline(lastOnline)} />}
             href={`${route.CONVERSATION}/${userId}`}
           />
         ))}

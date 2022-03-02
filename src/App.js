@@ -6,8 +6,11 @@ import Register from "./pages/register";
 import NotFound from "./pages/404";
 import ProtectedRoutes from "./components/protected-routes";
 import * as route from "./constants/routes";
+import useUserStatus from "./hooks/useUserStatus";
 
 function App() {
+  useUserStatus();
+  
   return (
     <ProtectedRoutes>
       <Routes>

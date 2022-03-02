@@ -10,7 +10,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc, serverTimestamp } from "firebase/firestore";
 import { getRandomAvatar } from "../../utils/random-avatar";
 
 export const registerUser = (username, email, password) => {
@@ -29,6 +29,7 @@ export const registerUser = (username, email, password) => {
         userId: user.uid,
         username,
         avatar: getRandomAvatar(),
+        lastOnline: serverTimestamp(),
       });
       dispatch(fetchUserSuccess());
     } catch (error) {

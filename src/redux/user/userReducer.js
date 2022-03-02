@@ -28,6 +28,7 @@ const userReducer = (state = initialState, action) => {
     case REGISTER_USER_SUCCESS:
       return {
         loading: false,
+        loggedIn: true,
         error: "",
         user: action.payload,
       };
