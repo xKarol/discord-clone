@@ -11,6 +11,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { getRandomAvatar } from "../../utils/random-avatar";
 
 export const registerUser = (username, email, password) => {
   return async (dispatch) => {
@@ -26,6 +27,7 @@ export const registerUser = (username, email, password) => {
       const user = userCredential.user;
       await setDoc(doc(db, "users", user.uid), {
         username,
+        avatar: getRandomAvatar(),
       });
       dispatch(fetchUserSuccess());
     } catch (error) {

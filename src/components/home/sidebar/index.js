@@ -24,11 +24,11 @@ function Sidebar() {
         <AddIcon fontSize={"small"} />
       </StyledDirectMessages>
       <StyledList>
-        {latestConversations.map(({ userId, username }) => (
+        {latestConversations.map(({ userId, username, avatar }) => (
           <ListItem
             key={userId}
             name={username}
-            icon={<Avatar status="offline" />}
+            icon={<Avatar src={avatar} status="offline" />}
             href={`${route.CONVERSATION}/${userId}`}
           />
         ))}

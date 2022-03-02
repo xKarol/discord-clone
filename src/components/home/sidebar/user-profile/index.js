@@ -3,9 +3,10 @@ import { StyledCurrentUserData } from "./styles";
 import Username from "./username";
 import ProfileIcons from "./profile-icons";
 import { logoutUserRequest } from "../../../../redux/user/userActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function CurrentUserData() {
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logoutUserRequest());
@@ -13,7 +14,7 @@ function CurrentUserData() {
 
   return (
     <StyledCurrentUserData>
-      <Avatar status="online" onClick={handleLogout} />
+      <Avatar src={user.avatar} status="online" onClick={handleLogout} />
       <Username />
       <ProfileIcons />
     </StyledCurrentUserData>
