@@ -20,8 +20,17 @@ function HomePage() {
       <SidebarChannels />
       <StyledBody>
         <Header />
-        <Sidebar />
-        <Outlet />
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            maxHeight: "calc(100% - 50px)",
+          }}
+        >
+          <Sidebar />
+          <Outlet />
+        </div>
       </StyledBody>
       <AddServer />
     </StyledBackground>

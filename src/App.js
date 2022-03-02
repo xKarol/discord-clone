@@ -11,7 +11,10 @@ function App() {
     <ProtectedRoutes>
       <Routes>
         <Route path={route.HOME} element={<Home />}>
-          <Route path={route.CONVERSATION} element={<Conversation />} />
+          <Route
+            path={`${route.CONVERSATION}/:userId`}
+            element={<Conversation />}
+          />
         </Route>
         <Route path={route.REGISTER} element={<Register />} />
         <Route path={route.LOGIN} element={<Login />} />

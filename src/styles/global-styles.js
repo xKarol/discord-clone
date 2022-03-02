@@ -14,7 +14,6 @@ const GlobalStyles = createGlobalStyle`
         font-family: ${(props) => props.theme.fonts.main};
         background-color: ${(props) => props.theme.colors.veryDark};
         color: ${(props) => props.theme.colors.white};
-        overflow: hidden;
     }
     ol, ul {
         list-style: none;

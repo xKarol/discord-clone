@@ -5,6 +5,8 @@ const StyledMessageSendBox = styled.section`
   display: flex;
   margin-top: auto;
   height: 70px;
+  min-height: 70px;
+  padding: 0 20px;
   padding-bottom: 25px;
 `;
 
@@ -54,7 +56,6 @@ const StyledRightIcons = styled.div`
 `;
 
 const StyledEmoticons = styled.span`
-  /* font-size: 17px; */
   filter: grayscale(1);
   transition: filter 100ms ease-in-out, transform 50ms ease-in-out;
   &:hover {

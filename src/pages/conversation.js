@@ -1,3 +1,4 @@
+import Message from "../components/conversation/message";
 import MessageSendbox from "../components/conversation/message-sendbox";
 import {
   StyledContainer,
@@ -7,7 +8,19 @@ import {
 function ConversationPage() {
   return (
     <StyledContainer>
-      <StyledMessagesBox>messages</StyledMessagesBox>
+      <StyledMessagesBox>
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+        <Message />
+      </StyledMessagesBox>
       <MessageSendbox />
     </StyledContainer>
   );

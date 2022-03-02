@@ -4,9 +4,8 @@ import { HideScrollbar } from "../../../styles";
 const StyledSidebarBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 240px;
-  height: calc(100% - 50px);
-  max-height: calc(100% - 50px);
+  min-width: 235px;
+  height: 100%;
   background-color: ${(props) => props.theme.colors.formDark};
 `;
 
