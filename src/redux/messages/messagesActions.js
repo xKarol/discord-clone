@@ -14,6 +14,7 @@ import {
   orderBy,
   where,
   query,
+  serverTimestamp,
 } from "firebase/firestore";
 
 export const getMessages = (userId) => {
@@ -44,9 +45,10 @@ export const sendMessage = (recipientId, userId, message) => {
       dispatch(sendMessageRequest());
       const db = getFirestore();
       await addDoc(collection(db, "messages"), {
-        recipientId,
-        userId,
         message,
+        userId,
+        users: [recipientId, userId],
+        timestamp: serverTimestamp(),
       });
       dispatch(sendMessageSuccess());
     } catch (error) {

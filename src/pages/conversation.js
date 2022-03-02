@@ -22,7 +22,7 @@ function ConversationPage() {
     user: { uid: userId },
   } = useSelector((state) => state.user);
   // const data = useSelector((state) => state.messages);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { userId: recipientId } = useParams();
   const navigate = useNavigate();
   const unAuthorized = recipientId === userId;
@@ -31,18 +31,17 @@ function ConversationPage() {
   useEffect(() => {
     if (unAuthorized) navigate("/");
   }, [navigate, unAuthorized]);
+  // useEffect(() => {
+  //   if (!unAuthorized) return;
+  //   dispatch(getMessages(recipientId));
+  // }, [dispatch, unAuthorized, recipientId]);
 
   useEffect(() => {
-    if (!unAuthorized) return;
-    dispatch(getMessages(recipientId));
-  }, [dispatch, unAuthorized, recipientId]);
-
-  useEffect(() => {
+    if (unAuthorized) return;
     const db = getFirestore();
     const q = query(
       collection(db, "messages"),
-      where("recipientId", "==", recipientId),
-      where("userId", "==", userId)
+      where("users", "array-contains", recipientId, userId)
     );
     const unsub = onSnapshot(q, async (messagesDoc) => {
       // const data = messagesDoc.docs.map((message) => ({
@@ -64,7 +63,7 @@ function ConversationPage() {
       setMessages(data);
     });
     return () => unsub();
-  });
+  }, [unAuthorized, recipientId, userId]);
 
   if (unAuthorized) return null;
   return (

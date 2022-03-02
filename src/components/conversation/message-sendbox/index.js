@@ -21,6 +21,7 @@ function MessageSendbox() {
   const handleSendMessage = (e) => {
     e.preventDefault();
     dispatch(sendMessage(recipientId, userId, message));
+    setMessage("");
   };
 
   return (

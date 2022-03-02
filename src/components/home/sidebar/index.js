@@ -16,8 +16,8 @@ function Sidebar() {
   return (
     <StyledSidebarBox>
       <StyledList>
-        <ListItem name="Friends" icon={<EmojiPeopleIcon />} />
-        <ListItem name="Nitro" icon={<BoltIcon />} />
+        <ListItem name="Friends" href="/friends" icon={<EmojiPeopleIcon />} />
+        <ListItem name="Nitro" href="/nitro" icon={<BoltIcon />} />
       </StyledList>
       <StyledDirectMessages>
         Direct Messages
