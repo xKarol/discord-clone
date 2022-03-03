@@ -11,6 +11,7 @@ const StyledSidebarBox = styled.div`
 
 const StyledList = styled.ul`
   width: 100%;
+  min-height: 94px;
   padding: 0 10px;
   margin-top: 5px;
   display: flex;

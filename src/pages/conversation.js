@@ -13,7 +13,7 @@ import { setRecipientName } from "../redux/app/appActions";
 function ConversationPage() {
   const messageBoxRef = useRef(null);
   const {
-    user: { uid: userId },
+    user: { userId },
   } = useSelector((state) => state.user);
   const { userId: recipientId } = useParams();
   const navigate = useNavigate();

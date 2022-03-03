@@ -47,6 +47,7 @@ export const sendMessage = (recipientId, userId, message) => {
       await addDoc(collection(db, "messages"), {
         message,
         userId,
+        recipientId,
         users: [recipientId, userId],
         timestamp: serverTimestamp(),
       });

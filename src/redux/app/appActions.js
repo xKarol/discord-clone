@@ -6,7 +6,6 @@ export const setRecipientName = (recipientId) => {
   return async (dispatch) => {
     const db = getFirestore();
     const user = await getUserById(db, recipientId);
-    console.log(user);
     dispatch(setRecipientNameSuccess(user.username));
   };
 };

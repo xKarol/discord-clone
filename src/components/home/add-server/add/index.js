@@ -10,11 +10,13 @@ import {
   StyledButton,
 } from "../styles";
 import ServerIcon from "./server-icon";
+import { useSelector } from "react-redux";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 
 function Add() {
   const [pending, setPending] = useState(false);
-  const [serverName, setServerName] = useState("Karol's server");
+  const { user } = useSelector((state) => state.user);
+  const [serverName, setServerName] = useState(`${user.username}'s server`);
 
   const handleCreateServer = async () => {
     try {

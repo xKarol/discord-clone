@@ -6,15 +6,19 @@ import {
   StyledHeaderLeft,
   StyledHeaderMain,
 } from "./styles";
+import { useLocation } from "react-router-dom";
+import * as route from "../../../constants/routes";
 
 function Header({ children }) {
+  const { pathname } = useLocation();
+
   return (
     <StyledHeader>
       <StyledHeaderLeft>
         <StyledSearchBox>Find or start a conversation</StyledSearchBox>
       </StyledHeaderLeft>
       <StyledHeaderMain>
-        <Username />
+        {pathname !== route.HOME && <Username />}
         {children}
         <MainIcons />
       </StyledHeaderMain>

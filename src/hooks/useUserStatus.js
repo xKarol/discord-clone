@@ -11,10 +11,10 @@ function useUserStatus() {
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!user?.uid) return;
+    if (!user?.userId) return;
     const db = getFirestore();
     const update = async () => {
-      await updateDoc(doc(db, "users", user?.uid), {
+      await updateDoc(doc(db, "users", user?.userId), {
         lastOnline: serverTimestamp(),
       });
     };
@@ -23,7 +23,7 @@ function useUserStatus() {
       update();
     }, 1000 * 30);
     return () => clearInterval(timer);
-  }, [user?.uid]);
+  }, [user?.userId]);
 
   return null;
 }

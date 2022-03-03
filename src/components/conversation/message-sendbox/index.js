@@ -15,7 +15,7 @@ function MessageSendbox() {
   const dispatch = useDispatch();
   const { userId: recipientId } = useParams();
   const {
-    user: { uid: userId },
+    user: { userId },
   } = useSelector((state) => state.user);
   const { recipientName } = useSelector((state) => state.app);
 
