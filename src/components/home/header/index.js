@@ -1,3 +1,4 @@
+import Username from "./username";
 import MainIcons from "./main-icons";
 import {
   StyledHeader,
@@ -13,6 +14,7 @@ function Header({ children }) {
         <StyledSearchBox>Find or start a conversation</StyledSearchBox>
       </StyledHeaderLeft>
       <StyledHeaderMain>
+        <Username />
         {children}
         <MainIcons />
       </StyledHeaderMain>

@@ -56,10 +56,24 @@ const StyledHeaderMainIcons = styled.div`
   }
 `;
 
+const StyledHeaderUsername = styled.span`
+  > :first-child {
+    color: ${(props) => props.theme.colors.darkGray};
+    margin-right: 5px;
+  }
+  font-weight: 600;
+  font-size: 16px;
+  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export {
   StyledHeader,
   StyledSearchBox,
   StyledHeaderLeft,
   StyledHeaderMain,
   StyledHeaderMainIcons,
+  StyledHeaderUsername,
 };

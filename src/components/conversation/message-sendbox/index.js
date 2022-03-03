@@ -17,6 +17,7 @@ function MessageSendbox() {
   const {
     user: { uid: userId },
   } = useSelector((state) => state.user);
+  const { recipientName } = useSelector((state) => state.app);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ function MessageSendbox() {
       <StyledMessageSendInput onSubmit={(e) => handleSendMessage(e)}>
         <UploadIcon />
         <StyledInput
-          placeholder="Message @Karol"
+          placeholder={`Message @${recipientName}`}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />

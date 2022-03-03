@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Message from "../components/conversation/message";
 import MessageSendbox from "../components/conversation/message-sendbox";
@@ -8,6 +8,7 @@ import {
   StyledMessagesBox,
 } from "../components/conversation/styles";
 import useMessages from "../hooks/useMessages";
+import { setRecipientName } from "../redux/app/appActions";
 
 function ConversationPage() {
   const messageBoxRef = useRef(null);
@@ -18,6 +19,11 @@ function ConversationPage() {
   const navigate = useNavigate();
   const authorized = recipientId !== userId;
   const { messages } = useMessages(authorized, recipientId, userId);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setRecipientName(recipientId));
+  }, [dispatch, recipientId]);
 
   useEffect(() => {
     if (!authorized) navigate("/");
