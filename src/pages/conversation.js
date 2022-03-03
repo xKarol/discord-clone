@@ -9,11 +9,13 @@ import {
 } from "../components/conversation/styles";
 import useMessages from "../hooks/useMessages";
 import { setRecipientName } from "../redux/app/appActions";
+import { LOGIN } from "../constants/routes";
 
 function ConversationPage() {
   const messageBoxRef = useRef(null);
   const {
     user: { userId },
+    loggedIn,
   } = useSelector((state) => state.user);
   const { userId: recipientId } = useParams();
   const navigate = useNavigate();
@@ -24,6 +26,10 @@ function ConversationPage() {
   useEffect(() => {
     dispatch(setRecipientName(recipientId));
   }, [dispatch, recipientId]);
+
+  useEffect(() => {
+    if (!loggedIn) navigate(LOGIN);
+  }, [loggedIn, navigate]);
 
   useEffect(() => {
     if (!authorized) navigate("/");

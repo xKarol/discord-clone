@@ -5,21 +5,17 @@ import * as route from "../constants/routes";
 
 function ProtectedRoutes({ children, pending, loggedIn }) {
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   useLayoutEffect(() => {
     if (pending) return;
-    if (!loggedIn && location.pathname === route.HOME) {
+    if (!loggedIn && pathname === route.HOME) {
       return navigate(route.LOGIN);
     }
-    if (
-      (location.pathname === route.LOGIN ||
-        location.pathname === route.REGISTER) &&
-      loggedIn
-    ) {
+    if (loggedIn && (pathname === route.LOGIN || pathname === route.REGISTER)) {
       navigate(route.HOME);
     }
-  }, [location.pathname, loggedIn, navigate, pending]);
+  }, [pathname, loggedIn, navigate, pending]);
 
   if (pending) return <PendingScreen />;
   return children;
