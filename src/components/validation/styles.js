@@ -71,6 +71,11 @@ const StyledSubmit = styled.button`
   margin-top: 10px;
   margin-bottom: 10px;
   transition: background-color 100ms ease-in-out;
+  max-height: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     background-color: ${(props) => props.theme.colors.darkBlue};
   }
@@ -78,10 +83,17 @@ const StyledSubmit = styled.button`
 
 const StyledLabel = styled.label`
   text-transform: uppercase;
-  color: ${(props) => props.theme.colors.gray};
+  color: ${(props) =>
+    props.error ? props.theme.colors.red : props.theme.colors.gray};
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 5px;
+  > span {
+    text-transform: initial;
+    text-decoration: italic;
+    font-style: italic;
+    font-weight: 400;
+  }
 `;
 
 const StyledLink = styled.small`
