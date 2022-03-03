@@ -12,8 +12,7 @@ import {
 } from "../components/validation/styles";
 import { loginUser } from "../redux/user/userActions";
 import { CircularProgress } from "@mui/material";
-import { isValidEmail } from "../utils/regex";
-import { IsValidPassword } from "../utils/is-valid-password";
+import { isValidEmail, IsValidPassword } from "../utils/validation";
 import { emailErrors, passwordErrors } from "../helpers/firebase-errors";
 
 function Login() {
@@ -28,7 +27,6 @@ function Login() {
   const user = useSelector((state) => state.user);
 
   const onSubmit = ({ email, password }) => {
-    setLoading(true);
     if (!isValidEmail(email) || !IsValidPassword(password)) {
       setError("email", {
         type: "manual",
@@ -38,8 +36,8 @@ function Login() {
         type: "manual",
         message: "Login or password is invalid",
       });
-      setLoading(false);
     }
+    setLoading(true);
     dispatch(loginUser(email, password));
     setLoading(false);
   };

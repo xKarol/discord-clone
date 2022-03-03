@@ -18,11 +18,13 @@ const userReducer = (state = initialState, action) => {
     case REGISTER_USER:
       return {
         ...state,
+        error: "",
         loggedIn: true,
       };
     case REGISTER_USER_REQUEST:
       return {
         ...state,
+        error: "",
         loading: true,
       };
     case REGISTER_USER_SUCCESS:
