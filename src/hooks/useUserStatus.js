@@ -8,16 +8,13 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function useUserStatus() {
-  const {
-    user: { uid: userId },
-    loggedIn,
-  } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!loggedIn) return;
+    if (!user?.uid) return;
     const db = getFirestore();
     const update = async () => {
-      await updateDoc(doc(db, "users", userId), {
+      await updateDoc(doc(db, "users", user?.uid), {
         lastOnline: serverTimestamp(),
       });
     };
@@ -26,7 +23,7 @@ function useUserStatus() {
       update();
     }, 1000 * 30);
     return () => clearInterval(timer);
-  }, [userId, loggedIn]);
+  }, [user?.uid]);
 
   return null;
 }

@@ -7,12 +7,14 @@ import NotFound from "./pages/404";
 import ProtectedRoutes from "./components/protected-routes";
 import * as route from "./constants/routes";
 import useUserStatus from "./hooks/useUserStatus";
+import useAuth from "./hooks/useAuth";
 
 function App() {
+  const { loggedIn, pending } = useAuth();
   useUserStatus();
-  
+
   return (
-    <ProtectedRoutes>
+    <ProtectedRoutes loggedIn={loggedIn} pending={pending}>
       <Routes>
         <Route path={route.HOME} element={<Home />}>
           <Route

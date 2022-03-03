@@ -14,7 +14,7 @@ function CurrentUserData() {
 
   return (
     <StyledCurrentUserData>
-      <Avatar src={user.avatar} status="online" onClick={handleLogout} />
+      <Avatar src={user?.avatar} status="online" onClick={handleLogout} />
       <Username />
       <ProfileIcons />
     </StyledCurrentUserData>

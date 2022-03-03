@@ -11,16 +11,15 @@ import { getLatestConversations } from "../redux/latest-conversations/latest-con
 
 function HomePage() {
   const dispatch = useDispatch();
-  const {
-    user: { userId },
-  } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
+
   useEffect(() => {
     dispatch(getChannels());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getLatestConversations(userId));
-  }, [dispatch, userId]);
+    dispatch(getLatestConversations(user?.userId));
+  }, [dispatch, user?.userId]);
 
   return (
     <StyledBackground>

@@ -13,6 +13,7 @@ import {
 
 export const getLatestConversations = (userId) => {
   return async (dispatch) => {
+    if (!userId) return null;
     dispatch(fetchLatestConversationsRequest());
     try {
       const db = getFirestore();

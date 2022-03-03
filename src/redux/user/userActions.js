@@ -4,34 +4,17 @@ import {
   REGISTER_USER_FAILURE,
   LOGOUT_USER,
 } from "./userTypes";
-import {
-  getAuth,
-  signOut,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { doc, getFirestore, setDoc, serverTimestamp } from "firebase/firestore";
-import { getRandomAvatar } from "../../utils/random-avatar";
+import { getAuth, signOut, signInWithEmailAndPassword } from "firebase/auth";
+import { firebase_registerUser } from "../../helpers/register-user";
+import { getFirestore } from "firebase/firestore";
 
 export const registerUser = (username, email, password) => {
   return async (dispatch) => {
     dispatch(fetchUserRequest());
-    const auth = getAuth();
-    const db = getFirestore();
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      await setDoc(doc(db, "users"), {
-        userId: user.uid,
-        username,
-        avatar: getRandomAvatar(),
-        lastOnline: serverTimestamp(),
-      });
-      dispatch(fetchUserSuccess());
+      const db = getFirestore();
+      const auth = getAuth();
+      await firebase_registerUser(db, auth, email, password, username);
     } catch (error) {
       dispatch(fetchUserFailure(error.code));
     }
