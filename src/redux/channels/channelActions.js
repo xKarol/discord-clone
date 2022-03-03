@@ -2,6 +2,7 @@ import {
   FETCH_CHANNELS_REQUEST,
   FETCH_CHANNELS_SUCCESS,
   FETCH_CHANNELS_FAILURE,
+  ADD_NEW_CHANNEL,
 } from "./channelTypes";
 import { collection, getFirestore, getDocs } from "firebase/firestore";
 
@@ -20,6 +21,13 @@ export const getChannels = (userId) => {
     } catch (error) {
       dispatch(fetchChannelsFailure(error.code));
     }
+  };
+};
+
+export const addNewChannel = (channelData) => {
+  return {
+    type: ADD_NEW_CHANNEL,
+    payload: channelData,
   };
 };
 

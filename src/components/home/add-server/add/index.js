@@ -10,23 +10,28 @@ import {
   StyledButton,
 } from "../styles";
 import ServerIcon from "./server-icon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { toggleOpen } from "../../../../redux/add-server/addServerActions";
+import { addNewChannel } from "../../../../redux/channels/channelActions";
 
 function Add() {
   const [pending, setPending] = useState(false);
   const { user } = useSelector((state) => state.user);
-  const [serverName, setServerName] = useState(`${user.username}'s server`);
+  const [channelName, setChannelName] = useState(`${user.username}'s server`);
+  const dispatch = useDispatch();
 
-  const handleCreateServer = async () => {
+  const handleCreateChannel = async () => {
+    if (pending) return;
     try {
       setPending(true);
       const db = getFirestore();
-      await addDoc(collection(db, "channels"), {
-        name: serverName,
-      });
+      const channelData = { name: channelName };
+      const channelDoc = await addDoc(collection(db, "channels"), channelData);
+      dispatch(addNewChannel({ id: channelDoc.id, ...channelData }));
     } finally {
       setPending(false);
+      dispatch(toggleOpen());
     }
   };
 
@@ -46,14 +51,14 @@ function Add() {
           <StyledInput
             type="text"
             light
-            value={serverName}
-            onChange={(e) => setServerName(e.target.value)}
+            value={channelName}
+            onChange={(e) => setChannelName(e.target.value)}
           />
         </InputField>
       </StyledContainer>
       <StyledFooter row>
         <StyledButton transparent>Back</StyledButton>
-        <StyledButton onClick={handleCreateServer}>
+        <StyledButton onClick={handleCreateChannel}>
           {pending ? <CircularProgress size={20} thickness={6} /> : "Create"}
         </StyledButton>
       </StyledFooter>

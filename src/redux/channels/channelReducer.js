@@ -3,6 +3,7 @@ import {
   FETCH_CHANNELS_REQUEST,
   FETCH_CHANNELS_SUCCESS,
   FETCH_CHANNELS_FAILURE,
+  ADD_NEW_CHANNEL,
 } from "./channelTypes";
 
 const initialState = {
@@ -34,6 +35,11 @@ const channelsReducer = (state = initialState, action) => {
         loading: false,
         loggedIn: false,
         error: action.payload,
+      };
+    case ADD_NEW_CHANNEL:
+      return {
+        ...state,
+        channels: [...state.channels, action.payload],
       };
     default:
       return state;
