@@ -7,7 +7,7 @@ function ProtectedRoutes({ children, pending }) {
   const { loggedIn } = useSelector((state) => state.user);
 
   if (pending) return <PendingScreen />;
-  if (!loggedIn) return <Navigate to={ROUTE_LOGIN} />;
+  if (!loggedIn) return <Navigate to={ROUTE_LOGIN} replace={true} />;
   return children;
 }
 

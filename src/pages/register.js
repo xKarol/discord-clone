@@ -81,7 +81,7 @@ function Register() {
     }
   }, [user.error, setError]);
 
-  if (user.loggedIn) return <Navigate to={ROUTE_HOME} />;
+  if (user.loggedIn) return <Navigate to={ROUTE_HOME} replace={true} />;
   return (
     <ValidationBackground>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
