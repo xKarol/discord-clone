@@ -20,7 +20,7 @@ function ConversationPage() {
   const { userId: recipientId } = useParams();
   const navigate = useNavigate();
   const authorized = recipientId !== userId;
-  const { messages } = useMessages(authorized, recipientId, userId);
+  const { messages, loading } = useMessages(authorized, recipientId, userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,17 +36,21 @@ function ConversationPage() {
   }, [navigate, authorized]);
 
   useEffect(() => {
+    if (loading) return;
     const element = messageBoxRef.current;
     element.scrollTop = element.scrollHeight;
-  }, [messages]);
+  }, [messages, loading]);
 
   if (!authorized) return null;
   return (
     <StyledContainer>
       <StyledMessagesBox ref={messageBoxRef}>
-        {messages.map((props) => (
-          <Message key={props.messageId} {...props} />
-        ))}
+        {loading &&
+          [...new Array(3)].map((_, index) => (
+            <Message key={index} skeleton={index} />
+          ))}
+        {!loading &&
+          messages.map((props) => <Message key={props.messageId} {...props} />)}
       </StyledMessagesBox>
       <MessageSendbox />
     </StyledContainer>

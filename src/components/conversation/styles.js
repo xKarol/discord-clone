@@ -65,6 +65,14 @@ const StyledMessageText = styled.span`
   color: #d7ddde;
 `;
 
+const StyledSkeletonBox = styled.div`
+  display: flex;
+  > * {
+    margin-right: 5px;
+    border-radius: 12px !important;
+  }
+`;
+
 export {
   StyledContainer,
   StyledMessagesBox,
@@ -74,4 +82,5 @@ export {
   StyledMessageText,
   StyledMessageHeader,
   StyledMessageUsername,
+  StyledSkeletonBox,
 };

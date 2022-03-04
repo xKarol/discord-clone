@@ -11,6 +11,7 @@ import { getUserById } from "../helpers/get-user";
 
 function useMessages(authorized, recipientId, userId) {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!authorized) return;
@@ -33,11 +34,12 @@ function useMessages(authorized, recipientId, userId) {
         })
       );
       setMessages(data);
+      setLoading(false);
     });
     return () => unsub();
   }, [authorized, recipientId, userId]);
 
-  return { messages };
+  return { messages, loading };
 }
 
 export default useMessages;

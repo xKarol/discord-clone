@@ -7,13 +7,12 @@ import {
   ValidationBackground,
   StyledForm,
   StyledFormHeading,
-  StyledSubmit,
   StyledInput,
 } from "../components/validation/styles";
 import { loginUser } from "../redux/user/userActions";
-import { CircularProgress } from "@mui/material";
 import { isValidEmail, IsValidPassword } from "../utils/validation";
 import { emailErrors, passwordErrors } from "../helpers/firebase-errors";
+import Submit from "../components/validation/submit";
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -84,13 +83,7 @@ function Login() {
           linkText="Forgot your password?"
           href={"/forgot-password"}
         />
-        <StyledSubmit type="submit">
-          {loading ? (
-            <CircularProgress size={20} thickness={6} sx={{ color: "#FFF" }} />
-          ) : (
-            "Login"
-          )}
-        </StyledSubmit>
+        <Submit loading={loading}>Login</Submit>
         <RedirectLink
           extraText="Need an account?"
           linkText="Register"

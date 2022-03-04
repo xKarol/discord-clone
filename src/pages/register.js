@@ -6,20 +6,19 @@ import {
   ValidationBackground,
   StyledForm,
   StyledFormHeading,
-  StyledSubmit,
   StyledInput,
 } from "../components/validation/styles";
 import { months } from "../utils/month-names";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../redux/user/userActions";
-import { CircularProgress } from "@mui/material";
 import {
   IsValidUsername,
   isValidEmail,
   IsValidPassword,
 } from "../utils/validation";
 import { emailErrors, passwordErrors } from "../helpers/firebase-errors";
+import Submit from "../components/validation/submit";
 
 function Register() {
   const [loading, setLoading] = useState(false);
@@ -122,13 +121,7 @@ function Register() {
             })}
           </Dropdown>
         </InputField>
-        <StyledSubmit type="submit">
-          {loading ? (
-            <CircularProgress size={20} thickness={6} sx={{ color: "#FFF" }} />
-          ) : (
-            "Continue"
-          )}
-        </StyledSubmit>
+        <Submit loading={loading}>Continue</Submit>
         <RedirectLink linkText="Already have an account?" href={"/login"} />
       </StyledForm>
     </ValidationBackground>

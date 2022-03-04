@@ -8,17 +8,19 @@ import {
   StyledMessageUsername,
 } from "./styles";
 import { formatMessageDate } from "../../utils/format-date";
+import MessageSkeleton from "./message-skeleton";
 
-function Message({ user: { username, avatar }, timestamp, message }) {
+function Message({ user, timestamp, message, skeleton }) {
   const date = timestamp
     ? formatMessageDate(timestamp.toDate())
     : "in a few seconds";
+  if (skeleton !== undefined) return <MessageSkeleton skeleton={skeleton} />;
   return (
     <StyledMessage>
-      <Avatar src={avatar} />
+      <Avatar src={user.avatar} />
       <StyledMessageBox>
         <StyledMessageHeader>
-          <StyledMessageUsername>{username}</StyledMessageUsername>
+          <StyledMessageUsername>{user.username}</StyledMessageUsername>
           <StyledMessageDate>{date}</StyledMessageDate>
         </StyledMessageHeader>
         <StyledMessageText>{message}</StyledMessageText>
