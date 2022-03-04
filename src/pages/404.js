@@ -1,15 +1,8 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import PendingScreen from "../components/pending-screen";
+import { Navigate } from "react-router-dom";
+import { HOME as ROUTE_HOME } from "../constants/routes";
 
 function NotFoundPage() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate("/");
-  }, [navigate]);
-
-  return <PendingScreen />;
+  return <Navigate to={ROUTE_HOME} />;
 }
 
 export default NotFoundPage;

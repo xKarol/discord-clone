@@ -13,6 +13,8 @@ import { loginUser } from "../redux/user/userActions";
 import { isValidEmail, IsValidPassword } from "../utils/validation";
 import { emailErrors, passwordErrors } from "../helpers/firebase-errors";
 import Submit from "../components/validation/submit";
+import { Navigate } from "react-router-dom";
+import { HOME as ROUTE_HOME } from "../constants/routes";
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -59,6 +61,7 @@ function Login() {
     }
   }, [user.error, setError]);
 
+  if (user.loggedIn) return <Navigate to={ROUTE_HOME} />;
   return (
     <ValidationBackground>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>

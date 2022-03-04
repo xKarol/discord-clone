@@ -1,15 +1,22 @@
 import SidebarItem from "./sidebar-item";
 import { StyledSidebar } from "./styles";
 import ExploreIcon from "@mui/icons-material/Explore";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NewChannelProvider from "../../../context/new-channel-context";
 import AddChannel from "./add-channel";
 import { HOME } from "../../../constants/routes";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { getChannels } from "../../../redux/channels/channelActions";
 
 function SidebarChannels() {
   const { channels } = useSelector((state) => state.channels);
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getChannels());
+  }, [dispatch]);
 
   return (
     <NewChannelProvider>

@@ -1,23 +1,13 @@
-import { useLayoutEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import PendingScreen from "./pending-screen";
-import * as route from "../constants/routes";
+import { LOGIN as ROUTE_LOGIN } from "../constants/routes";
+import { useSelector } from "react-redux";
 
-function ProtectedRoutes({ children, pending, loggedIn }) {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-
-  useLayoutEffect(() => {
-    if (pending) return;
-    if (!loggedIn && pathname === route.HOME) {
-      return navigate(route.LOGIN);
-    }
-    if (loggedIn && (pathname === route.LOGIN || pathname === route.REGISTER)) {
-      navigate(route.HOME);
-    }
-  }, [pathname, loggedIn, navigate, pending]);
+function ProtectedRoutes({ children, pending }) {
+  const { loggedIn } = useSelector((state) => state.user);
 
   if (pending) return <PendingScreen />;
+  if (!loggedIn) return <Navigate to={ROUTE_LOGIN} />;
   return children;
 }
 

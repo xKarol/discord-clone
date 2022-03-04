@@ -19,6 +19,8 @@ import {
 } from "../utils/validation";
 import { emailErrors, passwordErrors } from "../helpers/firebase-errors";
 import Submit from "../components/validation/submit";
+import { Navigate } from "react-router-dom";
+import { HOME as ROUTE_HOME } from "../constants/routes";
 
 function Register() {
   const [loading, setLoading] = useState(false);
@@ -79,6 +81,7 @@ function Register() {
     }
   }, [user.error, setError]);
 
+  if (user.loggedIn) return <Navigate to={ROUTE_HOME} />;
   return (
     <ValidationBackground>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
