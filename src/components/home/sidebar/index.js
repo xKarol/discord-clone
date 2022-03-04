@@ -4,16 +4,9 @@ import ListItem from "./list-item";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import BoltIcon from "@mui/icons-material/Bolt";
 import AddIcon from "@mui/icons-material/Add";
-import { useSelector } from "react-redux";
-import Avatar from "../../avatar";
-import * as route from "../../../constants/routes";
-import isOnline from "../../../utils/is-online";
+import LastConversations from "./last-conversations";
 
 function Sidebar() {
-  const { latestConversations } = useSelector(
-    (state) => state.latestConversations
-  );
-
   return (
     <StyledSidebarBox>
       <StyledList>
@@ -24,16 +17,7 @@ function Sidebar() {
         Direct Messages
         <AddIcon fontSize={"small"} />
       </StyledDirectMessages>
-      <StyledList>
-        {latestConversations.map(({ userId, username, avatar, lastOnline }) => (
-          <ListItem
-            key={userId}
-            name={username}
-            icon={<Avatar src={avatar} status={isOnline(lastOnline)} />}
-            href={`${route.CONVERSATION}/${userId}`}
-          />
-        ))}
-      </StyledList>
+      <LastConversations />
       <UserProfile />
     </StyledSidebarBox>
   );
