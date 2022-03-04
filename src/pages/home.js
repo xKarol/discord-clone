@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AddServer from "../components/home/add-server";
 import SidebarChannels from "../components/home/sidebar-channels";
 import Sidebar from "../components/home/sidebar";
 import { StyledBackground, StyledBody } from "../components/home/styles";
@@ -38,7 +37,6 @@ function HomePage() {
           <Outlet />
         </div>
       </StyledBody>
-      <AddServer />
     </StyledBackground>
   );
 }

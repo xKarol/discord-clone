@@ -1,21 +1,19 @@
 import { Modal } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { toggleOpen } from "../../../redux/add-server/addServerActions";
 import { StyledBox } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import Main from "./main";
 import Add from "./add";
+import { useContext } from "react";
+import { NewChannelContext } from "../../../context/new-channel-context";
 
-function AddServer() {
-  const dispatch = useDispatch();
-  const { opened } = useSelector((state) => state.addServer);
+function AddChannelModal() {
+  const { setOpen, open } = useContext(NewChannelContext);
 
-  const handleClose = () => dispatch(toggleOpen());
+  const handleClose = () => setOpen(!open);
 
   return (
     <Modal
-      open={opened}
+      open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -30,4 +28,4 @@ function AddServer() {
   );
 }
 
-export default AddServer;
+export default AddChannelModal;

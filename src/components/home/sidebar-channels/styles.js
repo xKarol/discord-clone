@@ -46,22 +46,30 @@ const StyledSidebarItemBox = styled.li`
     }
     &::before {
       visiblity: visible;
-      height: 20px;
+      height: ${(props) => !props.active && "20px"};
       left: -6px;
     }
   }
   &::before {
     content: "";
     position: absolute;
-    left: -10px;
+    left: ${(props) => (props.active ? "-6px" : "-10px")};
     top: 50%;
     transform: translateY(-50%);
     width: 10px;
-    height: 0;
+    height: ${(props) => (props.active ? "40px" : "0px")};
     border-radius: 3px;
     background-color: ${(props) => props.theme.colors.white};
     transition: all 100ms ease-in-out;
-    visiblity: hidden;
+    visiblity: ${(props) => (props.active ? "visible" : "hidden")};
+    display: ${(props) => props.noIndicator && "none"};
+  }
+  ${StyledSidebarItem} {
+    border-radius: ${(props) => props.active && "15px"};
+    background-color: ${(props) => props.active && props.activeColor};
+    > * {
+      color: ${(props) => props.active && props.theme.colors.white};
+    }
   }
 `;
 
