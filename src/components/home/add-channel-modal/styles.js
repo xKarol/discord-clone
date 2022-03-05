@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledBox = styled.div`
+const StyledMainBox = styled.div`
   position: relative;
   max-width: 400px;
   background-color: ${(props) => props.theme.colors.white};
@@ -8,9 +8,9 @@ const StyledBox = styled.div`
   margin: auto;
   padding-top: 25px;
   display: flex;
-  flex-direction: column;
   outline: none;
   border-radius: 3px;
+  overflow: hidden;
   > .close-icon {
     position: absolute;
     top: 15px;
@@ -23,6 +23,12 @@ const StyledBox = styled.div`
       color: ${(props) => props.theme.colors.black};
     }
   }
+`;
+
+const StyledBox = styled.div`
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledContainer = styled.div`
@@ -75,6 +81,7 @@ const StyledButton = styled.button.attrs({ type: "button" })`
 `;
 
 export {
+  StyledMainBox,
   StyledBox,
   StyledContainer,
   StyledFooter,

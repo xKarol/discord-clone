@@ -8,19 +8,21 @@ import {
   StyledHeading,
   StyledDescription,
   StyledButton,
+  StyledBox,
 } from "../styles";
 import ServerIcon from "./server-icon";
 import { useDispatch, useSelector } from "react-redux";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { addNewChannel } from "../../../../redux/channels/channelActions";
 import { NewChannelContext } from "../../../../context/new-channel-context";
+import { MAIN } from "../../../../constants/channel-modal-pages";
 
 function Add() {
   const [pending, setPending] = useState(false);
   const { user } = useSelector((state) => state.user);
   const [channelName, setChannelName] = useState(`${user.username}'s server`);
   const dispatch = useDispatch();
-  const { setOpen } = useContext(NewChannelContext);
+  const { setOpen, changePage } = useContext(NewChannelContext);
 
   const handleCreateChannel = async () => {
     if (pending) return;
@@ -37,7 +39,7 @@ function Add() {
   };
 
   return (
-    <>
+    <StyledBox>
       <StyledContainer>
         <StyledHeading id="modal-modal-title">
           Customize your Server
@@ -58,12 +60,14 @@ function Add() {
         </InputField>
       </StyledContainer>
       <StyledFooter row>
-        <StyledButton transparent>Back</StyledButton>
+        <StyledButton transparent onClick={() => changePage(MAIN)}>
+          Back
+        </StyledButton>
         <StyledButton onClick={handleCreateChannel}>
           {pending ? <CircularProgress size={20} thickness={6} /> : "Create"}
         </StyledButton>
       </StyledFooter>
-    </>
+    </StyledBox>
   );
 }
 

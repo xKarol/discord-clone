@@ -5,12 +5,18 @@ import {
   StyledDescription,
   StyledContainer,
   StyledButton,
+  StyledBox,
 } from "../styles";
 import Option from "./option";
+import { useContext } from "react";
+import { NewChannelContext } from "../../../../context/new-channel-context";
+import { ADD_CHANNEL } from "../../../../constants/channel-modal-pages";
 
 function Main() {
+  const { changePage } = useContext(NewChannelContext);
+
   return (
-    <>
+    <StyledBox>
       <StyledContainer>
         <StyledHeading id="modal-modal-title">Create a Server</StyledHeading>
         <StyledDescription id="modal-modal-description">
@@ -19,7 +25,11 @@ function Main() {
         </StyledDescription>
       </StyledContainer>
       <StyledScrollbar>
-        <Option text="Create My Own" image="/images/magic-wand.png" />
+        <Option
+          onClick={() => changePage(ADD_CHANNEL)}
+          text="Create My Own"
+          image="/images/magic-wand.png"
+        />
         <StyledLabel>Start from template</StyledLabel>
         <StyledOptions>
           <Option text="Gaming" image="/images/controller.png" />
@@ -32,7 +42,7 @@ function Main() {
         <h5>Have an invite already?</h5>
         <StyledButton>Join a server</StyledButton>
       </StyledFooter>
-    </>
+    </StyledBox>
   );
 }
 

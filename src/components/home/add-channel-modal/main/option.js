@@ -1,9 +1,9 @@
 import { StyledOption, StyledOptionImage } from "./styles";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-function Option({ image, text }) {
+function Option({ onClick, image, text }) {
   return (
-    <StyledOption>
+    <StyledOption onClick={onClick}>
       <StyledOptionImage src={image} alt={text} />
       {text}
       <ChevronRightIcon sx={{ marginLeft: "auto" }} />
