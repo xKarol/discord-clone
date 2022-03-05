@@ -126,6 +126,14 @@ function Register() {
         </InputField>
         <Submit loading={loading}>Continue</Submit>
         <RedirectLink linkText="Already have an account?" href={"/login"} />
+        <span
+          style={{
+            fontSize: "13px",
+            color: "red",
+          }}
+        >
+          This is fake Discord app
+        </span>
       </StyledForm>
     </ValidationBackground>
   );

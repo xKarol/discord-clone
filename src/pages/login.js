@@ -92,6 +92,14 @@ function Login() {
           linkText="Register"
           href={"/register"}
         />
+        <span
+          style={{
+            fontSize: "13px",
+            color: "red",
+          }}
+        >
+          This is fake Discord app
+        </span>
       </StyledForm>
     </ValidationBackground>
   );
