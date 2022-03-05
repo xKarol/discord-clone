@@ -12,8 +12,7 @@ import {
 } from "../styles";
 import ServerIcon from "./server-icon";
 import { useDispatch, useSelector } from "react-redux";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
-import { addNewChannel } from "../../../../redux/channels/channelActions";
+import { createNewChannel } from "../../../../redux/channels/channelActions";
 import { NewChannelContext } from "../../../../context/new-channel-context";
 import { MAIN } from "../../../../constants/channel-modal-pages";
 
@@ -28,13 +27,10 @@ function Add() {
     if (pending) return;
     try {
       setPending(true);
-      const db = getFirestore();
-      const channelData = { name: channelName };
-      const channelDoc = await addDoc(collection(db, "channels"), channelData);
-      dispatch(addNewChannel({ id: channelDoc.id, ...channelData }));
+      dispatch(createNewChannel(channelName));
     } finally {
       setPending(false);
-      dispatch(setOpen(false));
+      setOpen(false);
     }
   };
 

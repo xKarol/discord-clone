@@ -11,7 +11,7 @@ import { MAIN } from "../../../constants/channel-modal-pages";
 function AddChannelModal() {
   const { setOpen, open, page } = useContext(NewChannelContext);
   const handleClose = () => setOpen(!open);
-  console.log(page);
+
   return (
     <Modal
       open={open}

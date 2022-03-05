@@ -4,7 +4,7 @@ import {
   FETCH_CHANNELS_FAILURE,
   ADD_NEW_CHANNEL,
 } from "./channelTypes";
-import { collection, getFirestore, getDocs } from "firebase/firestore";
+import { collection, getFirestore, addDoc, getDocs } from "firebase/firestore";
 
 export const getChannels = (userId) => {
   return async (dispatch) => {
@@ -21,6 +21,15 @@ export const getChannels = (userId) => {
     } catch (error) {
       dispatch(fetchChannelsFailure(error.code));
     }
+  };
+};
+
+export const createNewChannel = (channelName) => {
+  return async (dispatch) => {
+    const db = getFirestore();
+    const channelData = { name: channelName };
+    const channelDoc = await addDoc(collection(db, "channels"), channelData);
+    dispatch(addNewChannel({ id: channelDoc.id, ...channelData }));
   };
 };
 
