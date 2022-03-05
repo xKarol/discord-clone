@@ -53,4 +53,31 @@ const StyledDirectMessages = styled.h5`
   }
 `;
 
-export { StyledSidebarBox, StyledList, StyledListItem, StyledDirectMessages };
+const StyledSearchBox = styled.button.attrs({ type: "button" })`
+  background-color: ${(props) => props.theme.colors.dark};
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 7px 15px;
+  width: calc(100% - 20px);
+  color: ${(props) => props.theme.colors.gray};
+  font-size: 13px;
+`;
+
+const StyledSearchContainer = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  max-height: 50px;
+  border-bottom: 1px solid ${(props) => props.theme.colors.dark};
+`;
+
+export {
+  StyledSidebarBox,
+  StyledSearchBox,
+  StyledList,
+  StyledSearchContainer,
+  StyledListItem,
+  StyledDirectMessages,
+};
