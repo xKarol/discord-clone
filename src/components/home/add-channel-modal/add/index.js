@@ -60,10 +60,10 @@ function Add() {
         </InputField>
       </StyledContainer>
       <StyledFooter row>
-        <StyledButton transparent onClick={() => changePage(MAIN)}>
+        <StyledButton back onClick={() => changePage(MAIN)}>
           Back
         </StyledButton>
-        <StyledButton onClick={handleCreateChannel}>
+        <StyledButton next onClick={handleCreateChannel}>
           {pending ? <CircularProgress size={20} thickness={6} /> : "Create"}
         </StyledButton>
       </StyledFooter>

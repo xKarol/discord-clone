@@ -13,7 +13,7 @@ export default function NewChannelProvider({ children }) {
   const changePage = (page) => {
     const index = pages.indexOf(page);
     if (index === -1) return;
-    setPage(index);
+    setPage(pages[index]);
   };
   return (
     <NewChannelContext.Provider value={{ page, changePage, open, setOpen }}>

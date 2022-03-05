@@ -58,25 +58,40 @@ const StyledDescription = styled.p`
   margin-bottom: 20px;
 `;
 
-const StyledButton = styled.button.attrs({ type: "button" })`
-  color: ${(props) => (props.transparent ? "#000" : props.theme.colors.white)};
-  background-color: ${(props) =>
-    props.transparent ? "transparent" : props.theme.colors.darkGray};
+const MainButton = styled.button.attrs({ type: "button" })`
+  color: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.darkGray};
   border-radius: 3px;
   padding: 10px 0;
-  width: 100%;
   border: none;
-  margin-top: 10px;
   cursor: pointer;
-  height: 35px;
   max-height: 35px;
+  min-height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 100ms ease-in-out;
+`;
+
+const StyledButton = styled(MainButton)`
+  width: 100%;
+  margin-top: 10px;
+  //back btn
+  background-color: ${(props) => props.back && "transparent"};
+  color: ${(props) => props.back && props.theme.colors.black};
+  width: ${(props) => props.back && "unset"};
+  //next btn
+  background-color: ${(props) => props.next && props.theme.colors.blue};
+  color: ${(props) => props.next && props.theme.colors.white};
+  width: ${(props) => props.next && "unset"};
+  margin-left: ${(props) => props.next && "auto"};
+  padding-left: ${(props) => props.next && "25px"};
+  padding-right: ${(props) => props.next && "25px"};
+
   &:hover {
-    background-color: ${(props) =>
-      props.transparent ? null : props.theme.colors.dark};
+    background-color: ${(props) => props.theme.colors.dark};
+    background-color: ${(props) => props.back && "unset"};
+    background-color: ${(props) => props.next && props.theme.colors.darkBlue};
   }
 `;
 
