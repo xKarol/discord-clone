@@ -6,6 +6,7 @@ import AddChannelModal from "../add-channel-modal";
 
 function AddChannel() {
   const { setOpen, open } = useContext(NewChannelContext);
+
   return (
     <>
       <SidebarItem

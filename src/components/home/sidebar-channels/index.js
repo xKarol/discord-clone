@@ -4,7 +4,10 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import { useDispatch, useSelector } from "react-redux";
 import NewChannelProvider from "../../../context/new-channel-context";
 import AddChannel from "./add-channel";
-import { HOME } from "../../../constants/routes";
+import {
+  HOME as ROUTE_HOME,
+  CHANNEL as ROUTE_CHANNEL,
+} from "../../../constants/routes";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { getChannels } from "../../../redux/channels/channelActions";
@@ -24,6 +27,7 @@ function SidebarChannels() {
         <SidebarItem
           name="Home"
           color={"#5865F2"}
+          href="/"
           icon={
             <img
               src={"/images/logo-white.svg"}
@@ -31,10 +35,12 @@ function SidebarChannels() {
               style={{ width: "100%", transform: "scale(0.6)" }}
             />
           }
-          active={pathname === HOME}
+          active={pathname === ROUTE_HOME}
         />
         {!!channels.length &&
-          channels.map(({ id, name }) => <SidebarItem key={id} name={name} />)}
+          channels.map(({ id, name }) => (
+            <SidebarItem key={id} href={`${ROUTE_CHANNEL}/${id}`} name={name} />
+          ))}
 
         <AddChannel />
         <SidebarItem

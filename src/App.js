@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Conversation from "./pages/conversation";
+import Channel from "./pages/channel";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import NotFound from "./pages/404";
@@ -28,6 +29,7 @@ function App() {
           path={`${route.CONVERSATION}/:userId`}
           element={<Conversation />}
         />
+        <Route path={`${route.CHANNEL}/:channelId`} element={<Channel />} />
       </Route>
       <Route
         path={route.REGISTER}
