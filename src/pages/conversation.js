@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import Message from "../components/conversation/message";
 import MessageSendbox from "../components/conversation/message-sendbox";
@@ -8,11 +8,9 @@ import {
   StyledMessagesBox,
 } from "../components/conversation/styles";
 import useMessages from "../hooks/useMessages";
-import { setHeaderText, setHeaderType } from "../redux/app/appActions";
 import { HOME as ROUTE_HOME } from "../constants/routes";
-import { getFirestore } from "firebase/firestore";
-import { getUserById } from "../helpers/get-user";
 import { HEADER_TYPE_CONVERSATION } from "../constants/header";
+import useUpdateHeaderText from "../hooks/useUpdateHeaderText";
 
 function ConversationPage() {
   const messageBoxRef = useRef(null);
@@ -22,17 +20,7 @@ function ConversationPage() {
   const { userId: recipientId } = useParams();
   const authorized = recipientId !== userId;
   const { messages, loading } = useMessages(authorized, recipientId, userId);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const updateHeader = async () => {
-      const db = getFirestore();
-      const { username } = await getUserById(db, recipientId);
-      dispatch(setHeaderText(username));
-    };
-    updateHeader();
-    dispatch(setHeaderType(HEADER_TYPE_CONVERSATION));
-  }, [dispatch, recipientId]);
+  useUpdateHeaderText(HEADER_TYPE_CONVERSATION, recipientId);
 
   useEffect(() => {
     if (loading) return;
