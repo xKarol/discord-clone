@@ -1,15 +1,17 @@
+import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
-import Conversation from "./pages/conversation";
-import Channel from "./pages/channel";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import NotFound from "./pages/404";
 import ProtectedRoutes from "./components/protected-routes";
 import * as route from "./constants/routes";
+import PendingScreen from "./components/pending-screen";
 import useUserStatus from "./hooks/useUserStatus";
 import useAuth from "./hooks/useAuth";
-import PendingScreen from "./components/pending-screen";
+
+const Login = React.lazy(() => import("./pages/login"));
+const Register = React.lazy(() => import("./pages/register"));
+const NotFound = React.lazy(() => import("./pages/404"));
+const Home = React.lazy(() => import("./pages/home"));
+const Channel = React.lazy(() => import("./pages/channel"));
+const Conversation = React.lazy(() => import("./pages/conversation"));
 
 function App() {
   const { pending } = useAuth();
@@ -20,26 +22,62 @@ function App() {
       <Route
         path={route.HOME}
         element={
-          <ProtectedRoutes pending={pending}>
-            <Home />
-          </ProtectedRoutes>
+          <Suspense fallback={null}>
+            <ProtectedRoutes pending={pending}>
+              <Home />
+            </ProtectedRoutes>
+          </Suspense>
         }
       >
         <Route
           path={`${route.CONVERSATION}/:userId`}
-          element={<Conversation />}
+          element={
+            <Suspense fallback={null}>
+              <Conversation />
+            </Suspense>
+          }
         />
-        <Route path={`${route.CHANNEL}/:channelId`} element={<Channel />} />
+        <Route
+          path={`${route.CHANNEL}/:channelId`}
+          element={
+            <Suspense fallback={null}>
+              <Channel />
+            </Suspense>
+          }
+        />
       </Route>
       <Route
         path={route.REGISTER}
-        element={pending ? <PendingScreen /> : <Register />}
+        element={
+          pending ? (
+            <PendingScreen />
+          ) : (
+            <Suspense fallback={null}>
+              <Register />
+            </Suspense>
+          )
+        }
       />
       <Route
         path={route.LOGIN}
-        element={pending ? <PendingScreen /> : <Login />}
+        element={
+          pending ? (
+            <PendingScreen />
+          ) : (
+            <Suspense fallback={null}>
+              <Login />
+            </Suspense>
+          )
+        }
       />
-      <Route path={"*"} element={<NotFound />} />
+      <Route
+        path={"*"}
+        element={
+          <Suspense fallback={null}>
+            <NotFound />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 }
