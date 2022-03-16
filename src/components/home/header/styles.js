@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { device } from "../../../styles/breakpoints";
 
 const StyledHeader = styled.header`
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 50px;
   max-height: 50px;
@@ -48,9 +50,22 @@ const StyledHeaderText = styled.span`
   justify-content: center;
 `;
 
+const StyledHamburger = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${(props) => props.theme.colors.darkGray};
+  cursor: pointer;
+  margin-right: 10px;
+  @media ${device.md} {
+    display: none;
+  }
+`;
+
 export {
   StyledHeader,
   StyledHeaderMain,
   StyledHeaderMainIcons,
   StyledHeaderText,
+  StyledHamburger,
 };

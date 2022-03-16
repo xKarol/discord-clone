@@ -34,6 +34,7 @@ function ConversationPage() {
   }, [messages, loading]);
 
   if (!authorized) return <Navigate to={ROUTE_HOME} replace={true} />;
+
   return (
     <StyledContainer>
       <StyledMessagesBox ref={messageBoxRef}>

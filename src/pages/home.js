@@ -8,16 +8,19 @@ import {
 } from "../components/home/styles";
 import Header from "../components/home/header";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function HomePage() {
+  const { toggledMenu } = useSelector((state) => state.app);
+
   return (
     <StyledBackground>
-      <StyledLeftContainers>
+      <StyledLeftContainers active={toggledMenu}>
         <SidebarChannels />
         <Sidebar />
       </StyledLeftContainers>
 
-      <StyledBody>
+      <StyledBody active={toggledMenu}>
         <Header />
         <StyledMainSection>
           <Outlet />

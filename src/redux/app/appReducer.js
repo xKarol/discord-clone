@@ -1,8 +1,9 @@
-import { SET_HEADER_TEXT, SET_HEADER_TYPE } from "./appTypes";
+import { SET_HEADER_TEXT, SET_HEADER_TYPE, TOGGLE_MENU } from "./appTypes";
 
 const initialState = {
   headerText: "",
-  headerType: undefined
+  headerType: undefined,
+  toggledMenu: false,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -11,6 +12,8 @@ const appReducer = (state = initialState, action) => {
       return { ...state, headerText: action.payload };
     case SET_HEADER_TYPE:
       return { ...state, headerType: action.payload };
+    case TOGGLE_MENU:
+      return { ...state, toggledMenu: !state.toggledMenu };
     default:
       return state;
   }
