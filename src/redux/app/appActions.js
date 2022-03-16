@@ -1,18 +1,15 @@
-import { getFirestore } from "firebase/firestore";
-import { getUserById } from "../../helpers/get-user";
-import { SET_RECIPIENT_NAME } from "./appTypes";
+import { SET_HEADER_TEXT, SET_HEADER_TYPE } from "./appTypes";
 
-export const setRecipientName = (recipientId) => {
-  return async (dispatch) => {
-    const db = getFirestore();
-    const user = await getUserById(db, recipientId);
-    dispatch(setRecipientNameSuccess(user.username));
+export const setHeaderText = (text) => {
+  return {
+    type: SET_HEADER_TEXT,
+    payload: text,
   };
 };
 
-export const setRecipientNameSuccess = (username) => {
+export const setHeaderType = (type) => {
   return {
-    type: SET_RECIPIENT_NAME,
-    payload: username,
+    type: SET_HEADER_TYPE,
+    payload: type,
   };
 };

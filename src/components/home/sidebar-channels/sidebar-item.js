@@ -1,7 +1,6 @@
 import { StyledSidebarItem, StyledSidebarItemBox } from "./styles";
 import { getAcronym } from "../../../utils/regex";
 import Tooltip from "../../tooltip";
-import { CHANNEL as ROUTE_CHANNEL } from "../../../constants/routes";
 import { useNavigate } from "react-router-dom";
 
 function SidebarItem(props) {

@@ -8,8 +8,11 @@ import {
   StyledMessagesBox,
 } from "../components/conversation/styles";
 import useMessages from "../hooks/useMessages";
-import { setRecipientName } from "../redux/app/appActions";
+import { setHeaderText, setHeaderType } from "../redux/app/appActions";
 import { HOME as ROUTE_HOME } from "../constants/routes";
+import { getFirestore } from "firebase/firestore";
+import { getUserById } from "../helpers/get-user";
+import { HEADER_TYPE_CONVERSATION } from "../constants/header";
 
 function ConversationPage() {
   const messageBoxRef = useRef(null);
@@ -22,7 +25,13 @@ function ConversationPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setRecipientName(recipientId));
+    const updateHeader = async () => {
+      const db = getFirestore();
+      const { username } = await getUserById(db, recipientId);
+      dispatch(setHeaderText(username));
+    };
+    updateHeader();
+    dispatch(setHeaderType(HEADER_TYPE_CONVERSATION));
   }, [dispatch, recipientId]);
 
   useEffect(() => {

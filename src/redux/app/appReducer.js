@@ -1,13 +1,16 @@
-import { SET_RECIPIENT_NAME } from "./appTypes";
+import { SET_HEADER_TEXT, SET_HEADER_TYPE } from "./appTypes";
 
 const initialState = {
-  recipientName: "",
+  headerText: "",
+  headerType: undefined
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_RECIPIENT_NAME:
-      return { ...state, recipientName: action.payload };
+    case SET_HEADER_TEXT:
+      return { ...state, headerText: action.payload };
+    case SET_HEADER_TYPE:
+      return { ...state, headerType: action.payload };
     default:
       return state;
   }

@@ -1,0 +1,2 @@
+export const HEADER_TYPE_CONVERSATION = 0;
+export const HEADER_TYPE_CHANNEL = 1;

@@ -1,15 +1,20 @@
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import { useSelector } from "react-redux";
 import { StyledHeaderUsername } from "./styles";
-
+import TagIcon from "@mui/icons-material/Tag";
+import { HEADER_TYPE_CHANNEL } from "../../../constants/header";
 function Username() {
-  const { recipientName } = useSelector((state) => state.app);
+  const { headerText, headerType } = useSelector((state) => state.app);
 
-  if (!recipientName) return null;
+  if (!headerText) return null;
   return (
     <StyledHeaderUsername>
-      <AlternateEmailIcon />
-      {recipientName}
+      {headerType === HEADER_TYPE_CHANNEL ? (
+        <TagIcon />
+      ) : (
+        <AlternateEmailIcon />
+      )}
+      {headerText}
     </StyledHeaderUsername>
   );
 }
