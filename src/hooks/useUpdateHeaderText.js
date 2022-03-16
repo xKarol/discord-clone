@@ -16,6 +16,7 @@ export default function useUpdateHeaderText(type, id) {
     const updateHeader = async () => {
       const db = getFirestore();
       let text;
+      dispatch(setHeaderText(""));
       if (type === HEADER_TYPE_CONVERSATION) {
         const { username } = await getUserById(db, id);
         text = username;

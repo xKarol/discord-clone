@@ -35,7 +35,7 @@ const StyledHeaderMainIcons = styled.div`
   }
 `;
 
-const StyledHeaderUsername = styled.span`
+const StyledHeaderText = styled.span`
   > :first-child {
     color: ${(props) => props.theme.colors.darkGray};
     margin-right: 5px;
@@ -52,5 +52,5 @@ export {
   StyledHeader,
   StyledHeaderMain,
   StyledHeaderMainIcons,
-  StyledHeaderUsername,
+  StyledHeaderText,
 };
