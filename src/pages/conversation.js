@@ -19,7 +19,12 @@ function ConversationPage() {
   } = useSelector((state) => state.user);
   const { userId: recipientId } = useParams();
   const authorized = recipientId !== userId;
-  const { messages, loading } = useMessages(authorized, recipientId, userId);
+  const { messages, loading } = useMessages(
+    HEADER_TYPE_CONVERSATION,
+    authorized,
+    recipientId,
+    userId
+  );
   useUpdateHeaderText(HEADER_TYPE_CONVERSATION, recipientId);
 
   useEffect(() => {
