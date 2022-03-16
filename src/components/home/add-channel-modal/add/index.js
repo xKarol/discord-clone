@@ -23,9 +23,10 @@ function Add() {
   const { setOpen, changePage, selectedAvatar } = useContext(NewChannelContext);
   const { addChannelLoading } = useSelector((state) => state.channels);
 
-  const handleCreateChannel = () => {
+  const handleCreateChannel = async () => {
     if (addChannelLoading) return;
-    dispatch(createNewChannel(channelName, selectedAvatar));
+    await dispatch(createNewChannel(channelName, selectedAvatar));
+    setOpen(false);
   };
 
   return (

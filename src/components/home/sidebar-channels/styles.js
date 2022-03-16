@@ -26,29 +26,18 @@ const StyledSidebarItem = styled.div`
   justify-content: center;
   font-weight: 700;
   color: #f0f0f0;
-  background-color: ${(props) => props.color ?? props.theme.colors.lightDark};
+  background-color: ${(props) => props.color};
   overflow: hidden;
   transition: border-radius 100ms ease-in-out;
   cursor: pointer;
-`;
-
-const StyledSidebarItemBox = styled.li`
-  display: flex;
-  margin-bottom: 15px;
-  position: relative;
-  width: 100%;
-  &:last-child {
-    margin-bottom: 0;
+  border-radius: ${(props) => props.active && "15px"};
+  border-radius: ${(props) => props.blockHoverTransition && "50%"};
+  background-color: ${(props) => props.active && props.activeColor};
+  > :first-child {
+    color: ${(props) => props.active && props.theme.colors.white};
   }
   &:hover {
-    ${StyledSidebarItem} {
-      border-radius: 15px;
-    }
-    &::before {
-      visiblity: visible;
-      height: ${(props) => !props.active && "20px"};
-      left: -6px;
-    }
+    border-radius: ${(props) => (props.blockHoverTransition ? "50%" : "15px")};
   }
   &::before {
     content: "";
@@ -64,12 +53,20 @@ const StyledSidebarItemBox = styled.li`
     visiblity: ${(props) => (props.active ? "visible" : "hidden")};
     display: ${(props) => props.noIndicator && "none"};
   }
-  ${StyledSidebarItem} {
-    border-radius: ${(props) => props.active && "15px"};
-    background-color: ${(props) => props.active && props.activeColor};
-    > * {
-      color: ${(props) => props.active && props.theme.colors.white};
-    }
+  &:hover::before {
+    visiblity: visible;
+    height: ${(props) => !props.active && "20px"};
+    left: -6px;
+  }
+`;
+
+const StyledSidebarItemBox = styled.li`
+  display: flex;
+  margin-bottom: 15px;
+  position: relative;
+  width: 100%;
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 
