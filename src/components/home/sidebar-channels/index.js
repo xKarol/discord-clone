@@ -1,5 +1,5 @@
 import SidebarItem from "./sidebar-item";
-import { StyledSidebar } from "./styles";
+import { StyledSidebar, StyledChannelAvatar } from "./styles";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { useDispatch, useSelector } from "react-redux";
 import NewChannelProvider from "../../../context/new-channel-context";
@@ -38,8 +38,13 @@ function SidebarChannels() {
           active={pathname === ROUTE_HOME}
         />
         {!!channels.length &&
-          channels.map(({ id, name }) => (
-            <SidebarItem key={id} href={`${ROUTE_CHANNEL}/${id}`} name={name} />
+          channels.map(({ id, name, image }) => (
+            <SidebarItem
+              key={id}
+              href={`${ROUTE_CHANNEL}/${id}`}
+              name={name}
+              icon={image && <StyledChannelAvatar src={image} alt={name} />}
+            />
           ))}
 
         <AddChannel />

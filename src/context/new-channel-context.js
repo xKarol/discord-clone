@@ -7,6 +7,7 @@ export { NewChannelContext };
 export default function NewChannelProvider({ children }) {
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(MAIN);
+  const [selectedAvatar, setSelectedAvatar] = useState("");
 
   const pages = [MAIN, ADD_CHANNEL];
 
@@ -16,7 +17,16 @@ export default function NewChannelProvider({ children }) {
     setPage(pages[index]);
   };
   return (
-    <NewChannelContext.Provider value={{ page, changePage, open, setOpen }}>
+    <NewChannelContext.Provider
+      value={{
+        page,
+        changePage,
+        open,
+        setOpen,
+        selectedAvatar,
+        setSelectedAvatar,
+      }}
+    >
       {children}
     </NewChannelContext.Provider>
   );

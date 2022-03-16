@@ -73,4 +73,15 @@ const StyledSidebarItemBox = styled.li`
   }
 `;
 
-export { StyledSidebar, StyledSidebarItemBox, StyledSidebarItem };
+const StyledChannelAvatar = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export {
+  StyledSidebar,
+  StyledSidebarItemBox,
+  StyledSidebarItem,
+  StyledChannelAvatar,
+};

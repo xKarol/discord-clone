@@ -16,7 +16,7 @@ function SidebarItem(props) {
     <Tooltip title={props.name} placement="right">
       <StyledSidebarItemBox onClick={handleClick} {...props}>
         <StyledSidebarItem color={props.color}>
-          {props.icon ?? getAcronym(props.name)}
+          {props.icon ? props.icon : getAcronym(props.name)}
         </StyledSidebarItem>
       </StyledSidebarItemBox>
     </Tooltip>

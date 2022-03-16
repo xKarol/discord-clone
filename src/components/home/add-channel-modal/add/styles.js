@@ -4,6 +4,7 @@ const StyledAvatar = styled.div`
   width: 80px;
   height: 80px;
   border: 2px dashed ${(props) => props.theme.colors.dark};
+  border: ${(props) => props.overflow && "none"};
   border-radius: 50%;
   margin: auto;
   margin-bottom: 15px;
@@ -13,6 +14,7 @@ const StyledAvatar = styled.div`
   justify-content: center;
   position: relative;
   cursor: pointer;
+  overflow: ${(props) => (props.overflow ? "hidden" : "unset")};
   &:after {
     content: "+";
     position: absolute;
@@ -24,7 +26,7 @@ const StyledAvatar = styled.div`
     font-size: 20px;
     color: ${(props) => props.theme.colors.white};
     background-color: ${(props) => props.theme.colors.blue};
-    display: flex;
+    display: ${(props) => (props.overflow ? "none" : "flex")};
     align-items: center;
     justify-content: center;
   }
@@ -37,4 +39,10 @@ const StyledAvatarText = styled.span`
   font-weight: 800;
 `;
 
-export { StyledAvatar, StyledAvatarText };
+const StyledPreviewImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export { StyledAvatar, StyledAvatarText, StyledPreviewImage };

@@ -84,6 +84,7 @@ const StyledButton = styled(MainButton)`
   background-color: ${(props) => props.next && props.theme.colors.blue};
   color: ${(props) => props.next && props.theme.colors.white};
   width: ${(props) => props.next && "unset"};
+  min-width: ${(props) => props.next && "100px"};
   margin-left: ${(props) => props.next && "auto"};
   padding-left: ${(props) => props.next && "25px"};
   padding-right: ${(props) => props.next && "25px"};

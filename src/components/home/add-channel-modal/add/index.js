@@ -17,21 +17,15 @@ import { NewChannelContext } from "../../../../context/new-channel-context";
 import { MAIN } from "../../../../constants/channel-modal-pages";
 
 function Add() {
-  const [pending, setPending] = useState(false);
   const { user } = useSelector((state) => state.user);
   const [channelName, setChannelName] = useState(`${user.username}'s server`);
   const dispatch = useDispatch();
-  const { setOpen, changePage } = useContext(NewChannelContext);
+  const { setOpen, changePage, selectedAvatar } = useContext(NewChannelContext);
+  const { addChannelLoading } = useSelector((state) => state.channels);
 
-  const handleCreateChannel = async () => {
-    if (pending) return;
-    try {
-      setPending(true);
-      dispatch(createNewChannel(channelName));
-    } finally {
-      setPending(false);
-      setOpen(false);
-    }
+  const handleCreateChannel = () => {
+    if (addChannelLoading) return;
+    dispatch(createNewChannel(channelName, selectedAvatar));
   };
 
   return (
@@ -60,7 +54,11 @@ function Add() {
           Back
         </StyledButton>
         <StyledButton next onClick={handleCreateChannel}>
-          {pending ? <CircularProgress size={20} thickness={6} /> : "Create"}
+          {addChannelLoading ? (
+            <CircularProgress size={20} thickness={6} sx={{ color: "#fff" }} />
+          ) : (
+            "Create"
+          )}
         </StyledButton>
       </StyledFooter>
     </StyledBox>
