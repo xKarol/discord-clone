@@ -1,7 +1,4 @@
 import {
-  FETCH_MESSAGES_REQUEST,
-  FETCH_MESSAGES_SUCCESS,
-  FETCH_MESSAGES_FAILURE,
   SEND_MESSAGES_REQUEST,
   SEND_MESSAGES_SUCCESS,
   SEND_MESSAGES_FAILURE,
@@ -9,48 +6,35 @@ import {
 import {
   collection,
   getFirestore,
-  getDocs,
   addDoc,
-  orderBy,
-  where,
-  query,
   serverTimestamp,
 } from "firebase/firestore";
+import {
+  HEADER_TYPE_CHANNEL,
+  HEADER_TYPE_CONVERSATION,
+} from "../../constants/header";
 
-export const getMessages = (userId) => {
-  return async (dispatch) => {
-    dispatch(fetchMessagesRequest());
-    try {
-      const db = getFirestore();
-      const q = query(
-        collection(db, "messages"),
-        where("userId", "==", userId),
-        orderBy("timestamp", "desc")
-      );
-      const messagesDocs = await getDocs(q);
-      const messagesData = messagesDocs.docs.map((docData) => ({
-        id: docData.id,
-        ...docData.data(),
-      }));
-      dispatch(fetchMessagesSuccess(messagesData));
-    } catch (error) {
-      dispatch(fetchMessagesFailure(error.code));
-    }
-  };
-};
-
-export const sendMessage = (recipientId, userId, message) => {
+export const sendMessage = (type, id, userId, message) => {
   return async (dispatch) => {
     try {
       dispatch(sendMessageRequest());
       const db = getFirestore();
-      await addDoc(collection(db, "messages"), {
-        message,
-        userId,
-        recipientId,
-        users: [recipientId, userId],
-        timestamp: serverTimestamp(),
-      });
+      if (type === HEADER_TYPE_CONVERSATION) {
+        await addDoc(collection(db, "messages"), {
+          message,
+          userId,
+          recipientId: id,
+          users: [id, userId],
+          timestamp: serverTimestamp(),
+        });
+      } else if (type === HEADER_TYPE_CHANNEL) {
+        await addDoc(collection(db, "channel-messages"), {
+          message,
+          userId,
+          channelId: id,
+          timestamp: serverTimestamp(),
+        });
+      } else throw new Error();
       dispatch(sendMessageSuccess());
     } catch (error) {
       dispatch(sendMessageFailure(error.code));
@@ -73,26 +57,6 @@ export const sendMessageSuccess = () => {
 export const sendMessageFailure = (error) => {
   return {
     type: SEND_MESSAGES_FAILURE,
-    payload: error,
-  };
-};
-
-export const fetchMessagesRequest = () => {
-  return {
-    type: FETCH_MESSAGES_REQUEST,
-  };
-};
-
-export const fetchMessagesSuccess = (messages) => {
-  return {
-    type: FETCH_MESSAGES_SUCCESS,
-    payload: messages,
-  };
-};
-
-export const fetchMessagesFailure = (error) => {
-  return {
-    type: FETCH_MESSAGES_FAILURE,
     payload: error,
   };
 };

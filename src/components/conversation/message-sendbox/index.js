@@ -14,7 +14,7 @@ import { HEADER_TYPE_CHANNEL } from "../../../constants/header";
 function MessageSendbox() {
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
-  const { userId: recipientId } = useParams();
+  const { userId: recipientId, channelId } = useParams();
   const {
     user: { userId },
   } = useSelector((state) => state.user);
@@ -25,7 +25,14 @@ function MessageSendbox() {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    dispatch(sendMessage(recipientId, userId, message));
+    dispatch(
+      sendMessage(
+        headerType,
+        channelId ? channelId : recipientId,
+        userId,
+        message
+      )
+    );
     setMessage("");
   };
 
