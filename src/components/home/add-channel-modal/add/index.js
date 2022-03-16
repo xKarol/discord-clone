@@ -20,13 +20,14 @@ function Add() {
   const { user } = useSelector((state) => state.user);
   const [channelName, setChannelName] = useState(`${user.username}'s server`);
   const dispatch = useDispatch();
-  const { setOpen, changePage, selectedAvatar } = useContext(NewChannelContext);
+  const { resetData, changePage, selectedAvatar } =
+    useContext(NewChannelContext);
   const { addChannelLoading } = useSelector((state) => state.channels);
 
   const handleCreateChannel = async () => {
     if (addChannelLoading) return;
     await dispatch(createNewChannel(channelName, selectedAvatar));
-    setOpen(false);
+    resetData();
   };
 
   return (

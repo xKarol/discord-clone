@@ -16,6 +16,13 @@ export default function NewChannelProvider({ children }) {
     if (index === -1) return;
     setPage(pages[index]);
   };
+
+  const resetData = () => {
+    setOpen(false);
+    changePage(MAIN);
+    setSelectedAvatar("");
+  };
+
   return (
     <NewChannelContext.Provider
       value={{
@@ -25,6 +32,7 @@ export default function NewChannelProvider({ children }) {
         setOpen,
         selectedAvatar,
         setSelectedAvatar,
+        resetData,
       }}
     >
       {children}
