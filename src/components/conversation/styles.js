@@ -83,6 +83,7 @@ const StyledMessageDate = styled.time`
 const StyledMessageText = styled.span`
   font-size: 14px;
   color: #d7ddde;
+  word-break: break-word;
 `;
 
 const StyledSkeletonBox = styled.div`
