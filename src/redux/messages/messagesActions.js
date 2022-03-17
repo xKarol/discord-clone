@@ -7,6 +7,8 @@ import {
   collection,
   getFirestore,
   addDoc,
+  deleteDoc,
+  doc,
   serverTimestamp,
 } from "firebase/firestore";
 import {
@@ -39,6 +41,17 @@ export const sendMessage = (type, id, userId, message) => {
     } catch (error) {
       dispatch(sendMessageFailure(error.code));
     }
+  };
+};
+
+export const deleteMessage = (type, messageId) => {
+  return async (dispatch) => {
+    const db = getFirestore();
+    if (type === HEADER_TYPE_CONVERSATION) {
+      await deleteDoc(doc(db, "messages", messageId));
+    } else if (type === HEADER_TYPE_CHANNEL) {
+      await deleteDoc(doc(db, "channel-messages", messageId));
+    } else throw new Error();
   };
 };
 

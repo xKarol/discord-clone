@@ -2,8 +2,6 @@ import styled, { css } from "styled-components";
 
 const StyledAvatar = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   cursor: pointer;
   &::before {

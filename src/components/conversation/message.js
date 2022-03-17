@@ -10,24 +10,27 @@ import {
 import { formatMessageDate } from "../../utils/format-date";
 import MessageSkeleton from "./message-skeleton";
 import MessageActions from "./message-actions";
+import { MessageContext } from "../../context/message-context";
 
-function Message({ user, timestamp, message, skeleton }) {
+function Message({ messageId, user, timestamp, message, skeleton }) {
   const date = timestamp
     ? formatMessageDate(timestamp.toDate())
     : "in a few seconds";
   if (skeleton !== undefined) return <MessageSkeleton skeleton={skeleton} />;
   return (
-    <StyledMessage>
-      <Avatar src={user.avatar} />
-      <StyledMessageBox>
-        <StyledMessageHeader>
-          <StyledMessageUsername>{user.username}</StyledMessageUsername>
-          <StyledMessageDate>{date}</StyledMessageDate>
-        </StyledMessageHeader>
-        <StyledMessageText>{message}</StyledMessageText>
-      </StyledMessageBox>
-      <MessageActions />
-    </StyledMessage>
+    <MessageContext.Provider value={{ userId: user.userId, messageId }}>
+      <StyledMessage>
+        <Avatar src={user.avatar} />
+        <StyledMessageBox>
+          <StyledMessageHeader>
+            <StyledMessageUsername>{user.username}</StyledMessageUsername>
+            <StyledMessageDate>{date}</StyledMessageDate>
+          </StyledMessageHeader>
+          <StyledMessageText>{message}</StyledMessageText>
+        </StyledMessageBox>
+        <MessageActions />
+      </StyledMessage>
+    </MessageContext.Provider>
   );
 }
 
