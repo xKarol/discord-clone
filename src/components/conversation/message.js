@@ -9,6 +9,7 @@ import {
 } from "./styles";
 import { formatMessageDate } from "../../utils/format-date";
 import MessageSkeleton from "./message-skeleton";
+import MessageActions from "./message-actions";
 
 function Message({ user, timestamp, message, skeleton }) {
   const date = timestamp
@@ -25,6 +26,7 @@ function Message({ user, timestamp, message, skeleton }) {
         </StyledMessageHeader>
         <StyledMessageText>{message}</StyledMessageText>
       </StyledMessageBox>
+      <MessageActions />
     </StyledMessage>
   );
 }

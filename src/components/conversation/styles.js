@@ -6,6 +6,7 @@ const StyledMessagesBox = styled.section`
   flex-direction: column;
   overflow-y: scroll;
   padding: 20px;
+  padding-left: 0;
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -30,9 +31,28 @@ const StyledContainer = styled.section`
   width: 100%;
 `;
 
+const StyledMessageActions = styled.div`
+  position: absolute;
+  right: 15px;
+  top: -15px;
+  background: ${(props) => props.theme.colors.dark};
+  display: none;
+  border-radius: 5px;
+  border: 1px solid ${(props) => props.theme.colors.veryDark};
+  padding: 5px;
+`;
+
 const StyledMessage = styled.div`
   display: flex;
   margin-bottom: 15px;
+  padding-left: 20px;
+  position: relative;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.formDark};
+    ${StyledMessageActions} {
+      display: flex;
+    }
+  }
   &:last-child {
     margin-bottom: 0;
   }
@@ -83,4 +103,5 @@ export {
   StyledMessageHeader,
   StyledMessageUsername,
   StyledSkeletonBox,
+  StyledMessageActions,
 };
