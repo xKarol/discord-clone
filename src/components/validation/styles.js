@@ -66,6 +66,15 @@ const StyledInput = styled.input`
     border-color: transparent;
     outline-color: ${(props) => props.theme.colors.blue};
   }
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px
+      ${(props) => (props.light ? "#fefefe" : props.theme.colors.dark)} inset !important;
+    -webkit-text-fill-color: ${(props) =>
+      props.light ? "#000" : props.theme.colors.gray};
+  }
 `;
 
 const StyledSubmit = styled.button`
@@ -137,8 +146,12 @@ const StyledDropdownList = styled.ul`
     border-radius: 5px;
   }
   > li {
+    width: 100%;
     cursor: pointer;
     padding: 10px 15px;
+    color: ${(props) => props.theme.colors.white};
+    font-size: 15px;
+    display: flex;
     &:hover {
       background-color: ${(props) => props.theme.colors.dark};
     }
@@ -148,22 +161,28 @@ const StyledDropdownList = styled.ul`
 const StyledDropdownInput = styled(StyledInput).attrs({
   type: "text",
   placeholder: "Select",
+  tabIndex: "-1",
 })`
   outline: none;
-  border: 1px solid ${(props) => props.theme.colors.black} !important;
+  border: none;
   width: 100%;
+`;
+
+const StyledDropdown = styled.button.attrs({ type: "button" })`
+  outline: none;
+  background: transparent;
+  position: relative;
+  border: 1px solid ${(props) => props.theme.colors.black};
+  border-radius: 3px;
+
   &:focus-within {
-    ~ .arrow-icon {
-      transform: rotate(180deg);
+    > .arrow-icon {
+      transform: rotate(180deg) translateY(50%);
     }
-    ~ ${StyledDropdownList} {
+    ${StyledDropdownList} {
       display: flex;
     }
   }
-`;
-
-const StyledDropdown = styled.div`
-  position: relative;
   > .arrow-icon {
     position: absolute;
     top: 50%;
@@ -171,7 +190,7 @@ const StyledDropdown = styled.div`
     transform: translateY(-50%);
     color: ${(props) => props.theme.colors.gray};
     pointer-events: none;
-    transition: transform 100ms ease-in-out;
+    transition: transform 200ms ease-in-out;
   }
 `;
 
