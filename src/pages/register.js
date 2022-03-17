@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Dropdown from "../components/validation/dropdown";
 import InputField from "../components/validation/input-field";
 import RedirectLink from "../components/validation/redirect-link";
@@ -17,24 +16,24 @@ import {
   isValidEmail,
   IsValidPassword,
 } from "../utils/validation";
-import { emailErrors, passwordErrors } from "../helpers/firebase-errors";
 import Submit from "../components/validation/submit";
 import { Navigate } from "react-router-dom";
 import { HOME as ROUTE_HOME } from "../constants/routes";
+import useHandleError from "../hooks/useHandleError";
 
 function Register() {
-  const [loading, setLoading] = useState(false);
   const currentYear = new Date().getFullYear();
   const {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  useHandleError(user.error, setError);
 
-  const onSubmit = ({ email, username, password }) => {
+  const onSubmit = async ({ email, username, password }) => {
     let checkError = false;
     if (!isValidEmail(email)) {
       setError("email", {
@@ -58,28 +57,8 @@ function Register() {
       checkError = true;
     }
     if (checkError) return;
-    setLoading(true);
-    dispatch(registerUser(username, email, password));
-    setLoading(false);
+    await dispatch(registerUser(username, email, password));
   };
-
-  useEffect(() => {
-    if (!user.error) return;
-    let err = passwordErrors[user.error];
-    if (err) {
-      return setError("password", {
-        type: "manual",
-        message: err,
-      });
-    }
-    err = emailErrors[user.error];
-    if (err) {
-      return setError("email", {
-        type: "manual",
-        message: err,
-      });
-    }
-  }, [user.error, setError]);
 
   if (user.loggedIn) return <Navigate to={ROUTE_HOME} replace={true} />;
   return (
@@ -124,11 +103,12 @@ function Register() {
             })}
           </Dropdown>
         </InputField>
-        <Submit loading={loading}>Continue</Submit>
+        <Submit loading={isSubmitting}>Continue</Submit>
         <RedirectLink linkText="Already have an account?" href={"/login"} />
         <span
           style={{
-            fontSize: "13px",
+            marginTop: "5px",
+            fontSize: "14px",
             color: "red",
           }}
         >

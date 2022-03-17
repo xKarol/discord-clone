@@ -8,4 +8,5 @@ export const emailErrors = {
 export const passwordErrors = {
   "auth/wrong-password":
     "Password must be a string with at least 6 characters.",
+  "auth/too-many-requests": "Try again later",
 };

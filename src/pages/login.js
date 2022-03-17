@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import InputField from "../components/validation/input-field";
@@ -11,23 +10,23 @@ import {
 } from "../components/validation/styles";
 import { loginUser } from "../redux/user/userActions";
 import { isValidEmail, IsValidPassword } from "../utils/validation";
-import { emailErrors, passwordErrors } from "../helpers/firebase-errors";
 import Submit from "../components/validation/submit";
 import { Navigate } from "react-router-dom";
 import { HOME as ROUTE_HOME } from "../constants/routes";
+import useHandleError from "../hooks/useHandleError";
 
 function Login() {
-  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  useHandleError(user.error, setError);
 
-  const onSubmit = ({ email, password }) => {
+  const onSubmit = async ({ email, password }) => {
     if (!isValidEmail(email) || !IsValidPassword(password)) {
       setError("email", {
         type: "manual",
@@ -37,29 +36,10 @@ function Login() {
         type: "manual",
         message: "Login or password is invalid",
       });
+      return;
     }
-    setLoading(true);
-    dispatch(loginUser(email, password));
-    setLoading(false);
+    await dispatch(loginUser(email, password));
   };
-
-  useEffect(() => {
-    if (!user.error) return;
-    let err = passwordErrors[user.error];
-    if (err) {
-      return setError("password", {
-        type: "manual",
-        message: err,
-      });
-    }
-    err = emailErrors[user.error];
-    if (err) {
-      return setError("email", {
-        type: "manual",
-        message: err,
-      });
-    }
-  }, [user.error, setError]);
 
   if (user.loggedIn) return <Navigate to={ROUTE_HOME} replace={true} />;
   return (
@@ -86,7 +66,7 @@ function Login() {
           linkText="Forgot your password?"
           href={"/forgot-password"}
         />
-        <Submit loading={loading}>Login</Submit>
+        <Submit loading={isSubmitting}>Login</Submit>
         <RedirectLink
           extraText="Need an account?"
           linkText="Register"
@@ -94,7 +74,8 @@ function Login() {
         />
         <span
           style={{
-            fontSize: "13px",
+            marginTop: "5px",
+            fontSize: "14px",
             color: "red",
           }}
         >
