@@ -31,13 +31,12 @@ const StyledSidebarItem = styled.div`
   transition: border-radius 100ms ease-in-out;
   cursor: pointer;
   border-radius: ${(props) => props.active && "15px"};
-  border-radius: ${(props) => props.blockHoverTransition && "50%"};
   background-color: ${(props) => props.active && props.activeColor};
   > :first-child {
     color: ${(props) => props.active && props.theme.colors.white};
   }
   &:hover {
-    border-radius: ${(props) => (props.blockHoverTransition ? "50%" : "15px")};
+    border-radius: 15px;
   }
   &::before {
     content: "";

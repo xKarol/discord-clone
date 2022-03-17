@@ -3,43 +3,40 @@ import { getAcronym } from "../../../utils/regex";
 import Tooltip from "../../tooltip";
 import { useNavigate } from "react-router-dom";
 import { StyledChannelAvatar } from "./styles";
-import { useState } from "react";
 
-function SidebarItem(props) {
+function SidebarItem({
+  name,
+  color,
+  href,
+  icon,
+  active,
+  image,
+  noIndicator,
+  activeColor,
+  onClick,
+}) {
   const navigate = useNavigate();
-  const [blockHoverTransition, setBlockHoverTransition] = useState(false);
 
   const handleClick = () => {
-    if (props.href) {
-      navigate(props.href);
-    }
-  };
-
-  const checkImgSize = (e) => {
-    const img = e.target;
-    if (img.naturalWidth > 60 || img.naturalHeight > 60) return;
-    setBlockHoverTransition(true);
+    if (href) navigate(href);
   };
 
   return (
     <StyledSidebarItemBox onClick={handleClick}>
-      <Tooltip title={props.name} placement="right">
+      <Tooltip title={name} placement="right">
         <StyledSidebarItem
-          blockHoverTransition={blockHoverTransition}
-          color={props.image ? null : "#36393F"}
-          active={props.active}
-          {...props}
+          color={image ? null : color ? color : "#36393F"}
+          active={active}
+          activeColor={activeColor}
+          noIndicator={noIndicator}
+          onClick={onClick}
         >
-          {props.image ? (
-            <StyledChannelAvatar
-              src={props.image}
-              alt={props.name}
-              onLoad={(e) => checkImgSize(e)}
-            />
-          ) : props.icon ? (
-            props.icon
+          {image ? (
+            <StyledChannelAvatar src={image} alt={name} />
+          ) : icon ? (
+            icon
           ) : (
-            getAcronym(props.name)
+            getAcronym(name)
           )}
         </StyledSidebarItem>
       </Tooltip>
