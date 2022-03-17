@@ -9,8 +9,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MAIN } from "../../../constants/channel-modal-pages";
 
 function AddChannelModal() {
-  const { setOpen, open, page } = useContext(NewChannelContext);
-  const handleClose = () => setOpen(!open);
+  const { resetData, open, page } = useContext(NewChannelContext);
+  const handleClose = () => resetData();
 
   return (
     <Modal

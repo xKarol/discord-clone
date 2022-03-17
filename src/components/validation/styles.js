@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const ValidationBackground = styled.main`
   display: flex;
@@ -6,7 +7,16 @@ const ValidationBackground = styled.main`
   background-color: ${(props) => props.theme.colors.blue};
 `;
 
-const StyledForm = styled.form`
+const StyledForm = styled(motion.form).attrs({
+  initial: { opacity: 0, y: -25, scale: 1.05 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  transition: {
+    type: "spring",
+    stiffness: 100,
+    mass: 0.1,
+    duration: 0.2,
+  },
+})`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.colors.formDark};
