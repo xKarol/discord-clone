@@ -25,6 +25,9 @@ function MessageSendbox() {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
+    if (!message) return;
+    if (message.trim().length === 0) return; //only spaces check
+
     dispatch(
       sendMessage(
         headerType,
@@ -36,6 +39,12 @@ function MessageSendbox() {
     setMessage("");
   };
 
+  const handleInput = (e) => {
+    const text = e.target.value;
+    if (text.length >= 1000) return;
+    setMessage(text);
+  };
+
   return (
     <StyledMessageSendBox>
       <StyledMessageSendInput onSubmit={(e) => handleSendMessage(e)}>
@@ -43,7 +52,7 @@ function MessageSendbox() {
         <StyledInput
           placeholder={placeholder}
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => handleInput(e)}
         />
         <RightIcons />
       </StyledMessageSendInput>
